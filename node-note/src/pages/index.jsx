@@ -7,14 +7,14 @@ export default function Component() {
     return (
       <div className="navbar flex-row bg-base-300">
         <div className="flex-1 flex-row">
-          {/* Search Input */}
-          <div className="form-control">
-            <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-          </div>
           {/* Home Link */}
           <Link href="/Home">
             <div className="btn btn-ghost text-xl">Node-Note</div>
           </Link>
+          {/* Search Input */}
+          <div className="form-control">
+            <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+          </div>
         </div>
 
         {/* Profile */}
