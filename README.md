@@ -1,5 +1,6 @@
 # NODE-NOTE
 ## NODE-NOTE(or former Plascrastinate) is a node-like structured note taking app.
+[Link to the project](https://node-note-f3cdb.web.app)
 
 ### **features**
 - [x] Sign in with google account
