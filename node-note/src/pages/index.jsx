@@ -1,4 +1,5 @@
-import { useSession, signIn } from "next-auth/react";
+
+import { useSession, signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Footer from "../../components/Footer";
 import TypewriterTitle from "../../components/TypewritereTitle";
@@ -12,13 +13,16 @@ export default function Home() {
         await signIn();
 
         // Wait for the session to update
-        const intervalId = setInterval(() => {
-            // Check if the user is signed in and redirect
-            if (session) {
-                clearInterval(intervalId); // Stop the interval once the session is updated
+        const checkSession = async () => {
+            const updatedSession = await getSession();
+            if (updatedSession) {
                 router.push('/Notetaking');
+            } else {
+                setTimeout(checkSession, 200); // Check again after 200 milliseconds
             }
-        }, 200); // Check every 200 milliseconds, adjust as needed
+        };
+
+        checkSession(); // Start checking for the updated session
     };
 
     // Check if the user is signed in and redirect
