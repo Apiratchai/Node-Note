@@ -14,7 +14,7 @@ export default function Component() {
 
   if (session) {
     return (
-      <div className="navbar flex-row bg-base-300">
+      <div className="navbar flex-row mainbg">
         {/* ... (existing code for signed-in users) ... */}
         <button className="btn btn-primary" onClick={handleSignOut}>
           sign out

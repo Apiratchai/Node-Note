@@ -25,3 +25,13 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.transbg {
+  min-height: 100vh;
+  background-color: transparent;
+}
+
+.mainbg {
+  min-height: 100vh;
+  background-image: linear-gradient(180deg, #545e7c , #2025b6 );
+}
