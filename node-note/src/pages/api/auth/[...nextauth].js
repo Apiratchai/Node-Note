@@ -6,7 +6,7 @@ export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: "1050035043417-182o70s3jgt7g8ni6t0d6phbm6ttviob.apps.googleusercontent.com",
-      clientSecret: "CbtVlalmfD_7KNcvLgeA9au4NYX8",
+      clientSecret: "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",
     }),
     // ...add more providers here
   ],
