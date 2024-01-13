@@ -54,7 +54,7 @@ const BgForceGraph = () => {
       nodes.forEach(d => {
         context.beginPath();
         context.arc(d.x, d.y, d.radius, 0, 2 * Math.PI);
-        context.fillStyle = '#1e40af'; // Set node color
+        context.fillStyle = '#121A5D'; // Set node color
         context.fill();
       });
 
