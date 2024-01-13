@@ -1,39 +1,12 @@
-import { useSession, signIn, signOut } from "next-auth/react"
-import Link from "next/link"
+import { Main } from "next/document";
+import Footer from "../../conponents/Footer";
 
-export default function Component() {
-  const { data: session } = useSession()
-  if (session) {
+
+export default function Home() {
     return (
-      <div className="navbar flex-row bg-base-300">
-        <div className="flex-1 flex-row">
-          {/* Home Link */}
-          <Link href="/Home">
-            <div className="btn btn-ghost text-xl">Node-Note</div>
-          </Link>
-          {/* Search Input */}
-          <div className="form-control">
-            <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-          </div>
-        </div>
-
-        {/* Profile */}
-        <div>
-          <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-full rounded-full">
-              {session.user.image && (
-                <img src="{session.user.image}" alt="Profile" className="w-full h-full object-cover rounded-full" />
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+        <main className="flex min-h-screen flex-col">
+            <h1 className="text-white text-center">Homepage</h1>
+            <Footer></Footer>
+        </main>
     )
-  }
-  return (
-    <>
-      Not signed in <br />
-      <button className="btn btn-primary btn-xl" onClick={() => signIn()}>Sign in</button>
-    </>
-  )
 }
