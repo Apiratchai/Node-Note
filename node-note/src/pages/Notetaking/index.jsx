@@ -1,31 +1,30 @@
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useRouter } from "next/router";
-import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
+import { useState } from "react";
+import HeadNavBar from "../../../components/HeadNavBar";
 import Footer from "../../../components/Footer";
 
 export default function Component() {
   const { data: session } = useSession();
-  const router = useRouter();
+  const [view, setView] = useState("file"); // Default view is "Fileview"
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleSignOut = async () => {
     await signOut();
-    window.location.href = "/"; // Redirect to the root ("/") page
+  };
+
+  const toggleView = () => {
+    setView((prevView) => (prevView === "file" ? "graph" : "file"));
   };
 
   if (session) {
     return (
-      <div className="navbar flex-row mainbg">
-        {/* ... (existing code for signed-in users) ... */}
-        <button className="btn btn-primary" onClick={handleSignOut}>
-          sign out
-        </button>
-      </div>
+      <>
+        <HeadNavBar/>
+        <Footer/>
+      </>
     );
   }
 
-  // Redirect to the Home page if not signed in
-  const handleSignIn = async () => {
-    await signIn();
-    router.push("/Home");
-  };
+  // Add handling for the case when there is no session (if needed)
+  return null;
 }
