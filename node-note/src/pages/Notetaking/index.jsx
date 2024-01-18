@@ -19,12 +19,9 @@ export default function Component() {
   if (session) {
     return (
       <>
-        <HeadNavBar/>
-        <Footer/>
+      <HeadNavBar/>
+      <Footer/>
       </>
-    );
+    )
   }
-
-  // Add handling for the case when there is no session (if needed)
-  return null;
 }
