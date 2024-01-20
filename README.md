@@ -10,4 +10,11 @@
 - Catagorizing and visualization
    - [ ] Force directed graph view (node-like structure)
    - [ ] foldering
-     
+
+
+---Optional---
+- Sharing
+   - [ ] readonly format
+   - [ ] Edit access
+- Exporting
+  -  [ ] export as PDF
