@@ -13,13 +13,13 @@ const BgForceGraph = () => {
 
     const nodes = createNodes(center, width, height);
 
-    const links = createLinks(nodes, 0.01);
+    const links = createLinks(nodes, 0.013); // proba of nodes that link
 
     const simulation = d3.forceSimulation(nodes)
-      .force('charge', d3.forceManyBody().strength(-20)) // Increase repulsion between nodes
+      .force('charge', d3.forceManyBody().strength(-10)) // Increase repulsion between nodes
       .force('collision', d3.forceCollide().radius(d => d.radius + 100).strength(0.05))
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('link', d3.forceLink(links).id(d => d.id).strength(0.01))
+      .force('link', d3.forceLink(links).id(d => d.id).strength(0.05))
       .force('x', d3.forceX().strength(0.01))
       .force('y', d3.forceY().strength(0.01));
 
