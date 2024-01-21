@@ -19,6 +19,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["./**/*"],
+  "include": ["."], // just to make it usable
   "exclude": ["./_generated"]
 }

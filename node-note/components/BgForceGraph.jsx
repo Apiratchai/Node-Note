@@ -73,7 +73,7 @@ const BgForceGraph = () => {
   }, []);
 
   function createNodes(center, width, height) {
-    return d3.range(100).map(() => { // You can adjust the number of nodes as needed
+    return d3.range(100).map(() => {
       const angle = Math.random() * 2 * Math.PI;
       const radius = Math.sqrt(Math.random()) * Math.min(width, height) / 2;
   
@@ -81,13 +81,13 @@ const BgForceGraph = () => {
       const y = center.y + radius * Math.sin(angle);
   
       return {
-        id: uuidv4(),
+        id: uuidv4(), // Use uuidv7 instead of uuidv4
         x,
         y,
-        radius: Math.random() * 50 + 5, // Adjust the range of node sizes
+        radius: Math.random() * 50 + 5,
       };
     });
-  }
+  }  
 
   function createLinks(nodes, linkProbability) {
     const links = [];
