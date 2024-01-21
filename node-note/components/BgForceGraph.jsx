@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { v4 as uuidv4 } from 'uuid';

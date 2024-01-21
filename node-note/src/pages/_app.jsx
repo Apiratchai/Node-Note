@@ -1,13 +1,17 @@
-import '@/styles/globals.css'
-import { SessionProvider } from "next-auth/react"
+import "../styles/globals.css"
+import {ConvexClientProvider} from "../../components/ConvexClientProvider"
+import { dark } from "@clerk/themes"
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <ConvexClientProvider
+    appearance={{
+      baseTheme: dark
+    }}>
+    <Component {...pageProps}/>
+  </ConvexClientProvider>
   )
 }
