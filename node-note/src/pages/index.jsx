@@ -1,14 +1,24 @@
+import { useConvexAuth } from "convex/react";
 import Footer from "../../components/Footer";
 import TypewriterTitle from "../../components/TypewritereTitle";
 import Layout from "../../components/Layout";
 import { SignInButton } from "@clerk/nextjs";
+import { useRouter } from "next/router";
+import { UserButton } from "@clerk/nextjs";
 
 
 export default function Home() {
-  return (
+  const { isAuthenticated, isLoading } = useConvexAuth();
 
+  const goToNoteclick = () => {
+    useRouter.push("/Notetaking")
+  }
+  return (
     <Layout>
       <div className="flex flex-col min-h-screen transbg text-white">
+        <div className="">
+          <UserButton></UserButton>
+        </div>
         <main className="flex flex-col items-center justify-center text-center gap-y-5 flex-1 px-6 pb-10">
           <div className="mb-10">
             {/* above is margin bottom */}
@@ -19,9 +29,25 @@ export default function Home() {
           <div>
             <TypewriterTitle className />
           </div>
-          <div className="hover:-translate-y-1 bg-transparent hover:bg-white hover:text-black text-white font-semibold py-2 px-10 mt-10 rounded-full border border-white-500 transition duration-500">
-            <SignInButton />
-          </div>
+          {isAuthenticated && !isLoading && (
+            <div className="hover:cursor-pointer hover:-translate-y-1 bg-transparent hover:bg-white hover:text-black text-white font-semibold py-2 px-10 mt-10 rounded-full border border-white-500 transition duration-500"
+              onClick={goToNoteclick}>
+              Go to note
+            </div>
+          )}
+          {!isAuthenticated && !isLoading && (
+            <SignInButton mode="modal">
+              <div className="hover:cursor-pointer hover:-translate-y-1 bg-transparent hover:bg-white hover:text-black text-white font-semibold py-2 px-10 mt-10 rounded-full border border-white-500 transition duration-500">
+                Sign in
+              </div>
+            </SignInButton>
+          )}
+          {isLoading && (
+            <p className="button border-b items-center py-2 px-10 mt-10">
+              Loading...
+            </p>
+          )
+          }
         </main>
         <Footer />
       </div>
