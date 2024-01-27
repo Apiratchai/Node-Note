@@ -1,7 +1,7 @@
+"use client"
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { v4 as uuidv4 } from 'uuid';
-
 
 const BgForceGraph = () => {
   const simulationRef = useRef(null);
@@ -13,15 +13,16 @@ const BgForceGraph = () => {
 
     const nodes = createNodes(center, width, height);
 
-    const links = createLinks(nodes, 0.013); // proba of nodes that link
+    const links = createLinks(nodes, 0.02); // Increase the probability of nodes that link
 
     const simulation = d3.forceSimulation(nodes)
-      .force('charge', d3.forceManyBody().strength(-10)) // Increase repulsion between nodes
-      .force('collision', d3.forceCollide().radius(d => d.radius + 100).strength(0.05))
+      .force('charge', d3.forceManyBody().strength(-30)) // Increase repulsion between nodes
+      .force('collision', d3.forceCollide().radius(d => d.radius + 100).strength(0.2)) // Increase collision strength
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('link', d3.forceLink(links).id(d => d.id).strength(0.05))
+      .force('link', d3.forceLink(links).id(d => d.id).strength(0.1)) // Increase link strength
       .force('x', d3.forceX().strength(0.01))
-      .force('y', d3.forceY().strength(0.01));
+      .force('y', d3.forceY().strength(0.01))
+      .alphaDecay(0.02); // Adjust alpha decay
 
     const canvas = d3.select('#bgForceGraph').append('canvas')
       .attr('width', width)
@@ -65,7 +66,7 @@ const BgForceGraph = () => {
 
     // Animation loop for continuous movement
     const animate = () => {
-      simulationRef.current.alpha(0.3).restart();
+      simulationRef.current.alphaTarget(0.1).restart(); // Adjust alpha target
       requestAnimationFrame(animate);
     };
 
@@ -73,21 +74,21 @@ const BgForceGraph = () => {
   }, []);
 
   function createNodes(center, width, height) {
-    return d3.range(60).map(() => {
+    return d3.range(100).map(() => {
       const angle = Math.random() * 2 * Math.PI;
       const radius = Math.sqrt(Math.random()) * Math.min(width, height) / 2;
-
+  
       const x = center.x + radius * Math.cos(angle);
       const y = center.y + radius * Math.sin(angle);
-
+  
       return {
-        id: uuidv4(),
+        id: uuidv4(), // Use uuidv7 instead of uuidv4
         x,
         y,
-        radius: Math.random() * 50 + 7,
+        radius: Math.random() * 50 + 5,
       };
     });
-  }
+  }  
 
   function createLinks(nodes, linkProbability) {
     const links = [];

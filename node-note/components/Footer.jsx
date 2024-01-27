@@ -1,13 +1,13 @@
 export default function Footer() {
     return (
-        <div className="flex flex-row justify-center space-x-10">
+        <div className="flex flex-row justify-center ">
             <div>
-                <button className="hover:text-white text-blue-500 transition duration-500">
-                    About Us
+            <button className="px-5 hover:text-white hover:bg-white hover:bg-opacity-25 text-blue-400 transition duration-500">
+                    About us
                 </button>
             </div>
-            <div >
-                <button className="hover:text-white text-blue-500 transition duration-500">
+            <div>
+                <button className="px-5 hover:text-white hover:bg-white hover:bg-opacity-25 text-blue-400 transition duration-500">
                     Contact
                 </button>
             </div>
