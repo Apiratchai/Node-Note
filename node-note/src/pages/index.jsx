@@ -9,15 +9,15 @@ import { UserButton } from "@clerk/nextjs";
 
 export default function Home() {
   const { isAuthenticated, isLoading } = useConvexAuth();
-
+  const router = useRouter();
   const goToNoteclick = () => {
-    useRouter.push("/Notetaking")
+    router.push("/Notetaking")
   }
   return (
     <Layout>
       <div className="flex flex-col min-h-screen transbg text-white">
-        <div className="">
-          <UserButton></UserButton>
+        <div className="absolute top-0 right-0 mt-4 mr-4">
+          <UserButton />
         </div>
         <main className="flex flex-col items-center justify-center text-center gap-y-5 flex-1 px-6 pb-10">
           <div className="mb-10">
