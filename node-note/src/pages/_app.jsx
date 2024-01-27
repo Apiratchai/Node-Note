@@ -1,5 +1,6 @@
 import "../styles/globals.css"
-import {ConvexClientProvider} from "../../components/ConvexClientProvider"
+import { ConvexClientProvider } from "../../components/ConvexClientProvider"
+import { SignedIn, SignedOut } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
 
 export default function App({
@@ -8,10 +9,10 @@ export default function App({
 }) {
   return (
     <ConvexClientProvider
-    appearance={{
-      baseTheme: dark
-    }}>
-    <Component {...pageProps}/>
-  </ConvexClientProvider>
+      appearance={{
+        baseTheme: dark
+      }}>
+      <Component {...pageProps} />
+    </ConvexClientProvider>
   )
 }
