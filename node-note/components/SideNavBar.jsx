@@ -1,4 +1,4 @@
-import { ChevronsLeft,Menu } from "lucide-react"
+import { ChevronsLeft, Menu } from "lucide-react"
 import { useRef, useState } from "react"
 
 export default function MyComponent() {
@@ -42,7 +42,6 @@ export default function MyComponent() {
         >
           <ChevronsLeft />
         </div>
-
         <div>
           <p>Action item</p>
         </div>
@@ -55,10 +54,10 @@ export default function MyComponent() {
       </aside>
       {/* This will only appear if collapsed */}
       {isCollapsed && (
-        <div className="bg-transparent absolute top-0 left-0 p-4"
+        <div className="bg-transparent absolute top-5 left-5"
           role="button"
           onClick={resetWidth}>
-          <Menu/>
+          <Menu />
         </div>
       )}
     </>

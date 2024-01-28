@@ -24,3 +24,11 @@
 .mainbg {
   background-image: linear-gradient(180deg, #545e7c, #2025b6);
 }
+
+.cl-avatarBox {
+  width: 6em;
+  height: 6em;
+  border-radius: 50%;
+  border: 0.4em solid rgba(147 197 253);
+}
+

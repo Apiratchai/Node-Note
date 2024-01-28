@@ -1,4 +1,5 @@
 import { UserButton } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import { useConvexAuth } from "convex/react";
 import classNames from "classnames";
 import { useState } from "react";
@@ -6,11 +7,12 @@ import { useState } from "react";
 export default function HeadNavBar() {
     const { isAuthenticated, isLoading } = useConvexAuth();
     const [isSelected, setIsSelected] = useState(false);
+    const { user } = useUser();
     return (
         <div>
-            <nav className="grid grid-cols-3 px-5 py-2 bg-blue-300 justify-center items-center place-items-center">
+            <nav className="w-full grid grid-cols-3 px-5 py-2 bg-blue-300 justify-center items-center place-items-center z-50">
                 <div className="flex flex-row gap-x-5 items-center">
-                    <div className="font-bold text-2xl">Node-Note</div>
+                    <div className="font-bold text-2xl text-blue-800">Node-Note</div>
                     <div className="flex w-75 rounded-full bg-white">
                         <input
                             type="search"
@@ -26,7 +28,7 @@ export default function HeadNavBar() {
                 </div>
                 <div
                     role="button"
-                    className={classNames("relative w-40 h-10 bg-gray-600 m-1 rounded-full flex justify-start", {
+                    className={classNames("relative w-40 h-10 bg-gray-400 m-1 rounded-full flex justify-start", {
                         "justify-end": isSelected
                     })}
                     onClick={() => setIsSelected(!isSelected)}>
@@ -41,13 +43,13 @@ export default function HeadNavBar() {
                         {isSelected ? "Noteview" : "Graphview"}
                     </span>
                 </div>
-
-
-                <div className="absolute right-5">
-                    <UserButton
-                        className="rounded-full border-white border-4 h-10 px-5 m-2"
-                        style={{ position: "absolute", right: "-10px" }}
-                    />
+                <div className="absolute right-0 top-1 flex flex-row items-center">
+                    <div className="font-bold text-blue-800 mr-5">
+                        {user.fullName}
+                    </div>
+                    <div>
+                        <UserButton/>
+                    </div>
                 </div>
             </nav>
         </div>
