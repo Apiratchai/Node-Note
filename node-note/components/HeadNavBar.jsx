@@ -31,13 +31,13 @@ export default function HeadNavBar() {
                         <div id="toggle-count" class="p-0.5 inline-block bg-gray-100 rounded-lg dark:bg-gray-700">
                             <label for="toggle-count-monthly" class="relative inline-block py-2 px-3">
                                 <span class="inline-block relative z-10 text-sm font-medium text-gray-800 cursor-pointer dark:text-gray-200">
-                                    NoteView
+                                    Note-View
                                 </span>
                                 <input id="toggle-count-monthly" name="toggle-count" type="radio" class="absolute top-0 end-0 w-full h-full border-transparent bg-transparent bg-none text-transparent rounded-lg cursor-pointer before:absolute before:inset-0 before:w-full before:h-full before:rounded-lg focus:ring-offset-0 checked:before:bg-white checked:before:shadow-sm checked:bg-none focus:ring-transparent dark:checked:before:bg-gray-800 dark:focus:ring-offset-transparent" />
                             </label>
                             <label for="toggle-count-annual" class="relative inline-block py-2 px-3">
                                 <span class="inline-block relative z-10 text-sm font-medium text-gray-800 cursor-pointer dark:text-gray-200">
-                                    GraphView
+                                    Graph-View
                                 </span>
                                 <input id="toggle-count-annual" name="toggle-count" type="radio" class="absolute top-0 end-0 w-full h-full border-transparent bg-transparent bg-none text-transparent rounded-lg cursor-pointer before:absolute before:inset-0 before:w-full before:h-full before:rounded-lg focus:ring-offset-0 checked:before:bg-white checked:before:shadow-sm checked:bg-none focus:ring-transparent dark:checked:before:bg-gray-800 dark:focus:ring-offset-transparent" checked />
                             </label>
