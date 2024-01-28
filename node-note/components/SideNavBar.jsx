@@ -1,4 +1,4 @@
-import { ChevronsLeft } from "lucide-react"
+import { ChevronsLeft,Menu } from "lucide-react"
 import { useRef, useState } from "react"
 
 export default function MyComponent() {
@@ -58,7 +58,7 @@ export default function MyComponent() {
         <div className="bg-transparent absolute top-0 left-0 p-4"
           role="button"
           onClick={resetWidth}>
-          hi
+          <Menu/>
         </div>
       )}
     </>
