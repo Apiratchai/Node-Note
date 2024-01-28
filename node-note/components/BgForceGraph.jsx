@@ -22,7 +22,7 @@ const BgForceGraph = () => {
       .force('link', d3.forceLink(links).id(d => d.id).strength(0.1)) // Increase link strength
       .force('x', d3.forceX().strength(0.01))
       .force('y', d3.forceY().strength(0.01))
-      .alphaDecay(0.02); // Adjust alpha decay
+      .alphaDecay(0.000001); // Adjust alpha decay
 
     const canvas = d3.select('#bgForceGraph').append('canvas')
       .attr('width', width)
@@ -66,7 +66,7 @@ const BgForceGraph = () => {
 
     // Animation loop for continuous movement
     const animate = () => {
-      simulationRef.current.alphaTarget(0.1).restart(); // Adjust alpha target
+      simulationRef.current.alphaTarget(10).restart(); // Adjust alpha target
       requestAnimationFrame(animate);
     };
 
