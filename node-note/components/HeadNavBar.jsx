@@ -3,7 +3,7 @@ import { useConvexAuth } from "convex/react";
 
 export default function HeadNavBar() {
     const { isAuthenticated, isLoading } = useConvexAuth();
-    
+
     return (
         <nav className="flex flex-row px-3 pt-3 bg-blue-500 justify-between items-center">
             <div className="flex flex-row gap-x-10 items-center">

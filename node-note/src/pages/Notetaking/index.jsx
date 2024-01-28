@@ -3,8 +3,6 @@ import Footer from "../../../components/Footer";
 import NoteTakingLayout from "../../../components/NoteTakingLayout"
 import SideNavBar from "../../../components/SideNavBar"
 
-
-
 export default function Component() {
   return (
     <NoteTakingLayout>
@@ -13,5 +11,6 @@ export default function Component() {
         <Footer />
       </div>
     </NoteTakingLayout>
+
   )
 }
