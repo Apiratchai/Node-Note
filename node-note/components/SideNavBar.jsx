@@ -1,10 +1,16 @@
-import { ChevronsLeft, Menu } from "lucide-react"
+import { ChevronsLeft, Menu, PlusCircle } from "lucide-react"
 import { useRef, useState } from "react"
+import { useQuery } from "convex/react";
+import { api } from "../convex/_generated/api"
+import { useUser } from "@clerk/nextjs";
+import { Item } from "./item";
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const { user } = useUser();
 
   const collapse = () => {
     if (sideBarRef.current) {
@@ -25,6 +31,8 @@ export default function MyComponent() {
     }
   }
 
+  const documents = useQuery(api.documents.get);
+
   return (
     <>
       {/* group classname is to wrap actions for group components */}
@@ -37,16 +45,26 @@ export default function MyComponent() {
       >
         <div
           role="button"
-          className="h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-400 absolute top-3 right-2 opacity-0 group-hover:opacity-100 transition group"
+          className="h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-400 absolute top-3 right-2"
           onClick={collapse}
         >
           <ChevronsLeft />
         </div>
+        <div className="flex font-semibold justify-center items-center border border-black w-full h-10 pr-3">
+          <>{user.firstName + "'s Note"}</>
+        </div>
         <div>
-          <p>Action item</p>
+          <Item
+            onClick={() => { }}
+            label="New page"
+            icon={PlusCircle}
+          />
         </div>
         <div className="mt-4">
-          <p>Documents</p>
+          {documents?.map((documents) => (
+            <p key={document._id}>
+              {documents.title}</p>
+          ))}
         </div>
         <div className="opacity-0 group-hover:opacity-100 transition cursor-ew-resize absolute h-full w-2 bg-gray-400 right-0 top-0">
           {/* this only indicate that user can resize the sidebar */}

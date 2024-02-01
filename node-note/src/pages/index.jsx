@@ -1,4 +1,4 @@
-import { useConvexAuth } from "convex/react";
+import { useConvexAuth, useMutation } from "convex/react";
 import Footer from "../../components/Footer";
 import TypewriterTitle from "../../components/TypewritereTitle";
 import Layout from "../../components/Layout";
@@ -6,13 +6,13 @@ import { SignInButton } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 import { UserButton } from "@clerk/nextjs";
 
-
 export default function Home() {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const router = useRouter();
   const goToNoteclick = () => {
     router.push("/Notetaking")
   }
+
   return (
     <Layout>
       <div className="flex flex-col min-h-screen transbg text-white">
