@@ -1,4 +1,3 @@
-"use client"
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,7 +11,6 @@ const BgForceGraph = () => {
     const center = { x: width / 2, y: height / 2 };
 
     const nodes = createNodes(center, width, height);
-
     const links = createLinks(nodes, 0.02); // Increase the probability of nodes that link
 
     const simulation = d3.forceSimulation(nodes)
@@ -71,6 +69,27 @@ const BgForceGraph = () => {
     };
 
     animate();
+
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+  
+      // Update canvas dimensions
+      canvas
+        .attr('width', width)
+        .attr('height', height);
+  
+      // Update simulation center
+      simulation.force('center', d3.forceCenter(width / 2, height / 2));
+    };
+  
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+  
+    // Cleanup function to remove event listener
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   function createNodes(center, width, height) {
