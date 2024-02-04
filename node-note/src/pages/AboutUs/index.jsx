@@ -7,7 +7,6 @@ function index() {
   const goToLandPage = () => {
     router.push("../");
   };
-
   return (
     // min-h-screen this will make the last div always stick at the bottom
     <div className="flex flex-col min-h-screen">

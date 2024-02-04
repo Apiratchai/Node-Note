@@ -1,58 +1,39 @@
 'use client';
+import { useState } from "react";
 
 const ContactPopup = ({ open, onClose }) => {
 
   const handleOnClose = (e) => {
-    if(e.target.id === 'container') onClose();
+    if (e.target.id === 'container') onClose();
   }
 
-    if(!open) return null
+  if (!open) return null;
 
   return (
-    <div className=''>
+    <div>
       <div id='container' onClick={handleOnClose} className="fixed inset-0 bg-black bg-opacity-50 backdrop-brightness-50 flex justify-center items-center">
-        <div className='box-content h-[160px] w-[400px] bg-white p-7 rounded'>
-          <div className="flex flex-col justify-center items-center space-y-2">
-            <h1 className="text-3xl mb-3 text-black"> Contact Us </h1>
-            <div className="flex flex-row gap-5 ">
-              <span className="text-xl gap-3 text-black">
-                Apiratchai Lakkum
-              </span>
-              <a href = 'https://web.facebook.com/profile.php?id=100088070056042' className="cursor-pointer px-1 hover:text-blue-500 hover:bg-blue-500 hover:bg-opacity-25 text-black transition duration-175">
-                Facebook
-              </a>
-              <button className="cursor-pointer px-1 hover:text-orange-500 hover:bg-orange-500 hover:bg-opacity-25 text-black transition duration-175">
-                Email
-              </button>
-            </div>
-            <div className="flex flex-row gap-3 text-black">
-              <span className="text-xl gap-3">
-                Kunasin Salabsri
-              </span>
-              <a href='https://web.facebook.com/kunasin.salabsri.7' className="cursor-pointer px-1 hover:text-blue-500 hover:bg-blue-500 hover:bg-opacity-25 text-black transition duration-175">
-                Facebook
-              </a>
-              <button className="cursor-pointer px-1 hover:text-orange-500 hover:bg-orange-500 hover:bg-opacity-25 text-black transition duration-175">
-                Email
-              </button>
-            </div>
-            <div className="flex flex-row gap-3 text-black">
-              <span className="text-xl gap-3">
-                Achitapan Sutthiwanna
-              </span>
-              <a href = 'https://web.facebook.com/A.Sutthivanna' className="cursor-pointer px-1 hover:text-blue-500 hover:bg-blue-500 hover:bg-opacity-25 text-black transition duration-175">
-                Facebook
-              </a>
-              <button className="cursor-pointer px-1 hover:text-orange-500 hover:bg-orange-500 hover:bg-opacity-25 text-black transition duration-175">
-                Email
-              </button>
-            </div>
+        <div className='box-content h-[180px] w-[500px] bg-white p-7 rounded'>
+          <div className="flex flex-col space-y-2">
+            <h1 className="text-3xl mb-8 text-black text-center"> Contact Us </h1>
+            {[
+              { name: "Apiratchai Lakkum", role: "Full stack", facebook: "https://web.facebook.com/profile.php?id=100088070056042", email: "" },
+              { name: "Kunasin Salabsri", role: "UI designer", facebook: "https://web.facebook.com/kunasin.salabsri.7", email: "" },
+              { name: "Achitapan Sutthiwanna", role: "Front end", facebook: "https://web.facebook.com/A.Sutthivanna", email: "" }
+            ].map((member, index) => (
+              <div key={index} className="flex flex-row justify-between items-center">
+                <div className="text-xl text-black">{member.name}</div>
+                <div className="text-xs font-bold text-green-700 absolute ml-60 mt-1">{member.role}</div>
+                <div className="flex gap-3">
+                  <a href={member.facebook} className="cursor-pointer  text-blue-500 px-1 hover:text-blue-500 hover:bg-blue-500 hover:bg-opacity-25 text-black transition duration-175">Facebook</a>
+                  <a href={member.email} className="cursor-pointer text-orange-400 px-1 hover:text-orange-500 hover:bg-orange-500 hover:bg-opacity-25 text-black transition duration-175">Email</a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
-    )
-
+  );
 }
 
-export default ContactPopup
+export default ContactPopup;
