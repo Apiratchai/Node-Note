@@ -15,10 +15,6 @@ export const ConvexClientProvider = ({
 }) => {
   return (
     <ClerkProvider afterSignInUrl="/Notetaking" afterSignUpUrl="/Notetaking"
-      appearance={{
-        baseTheme: dark
-      }}
-
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}
     >
       <ConvexProviderWithClerk
