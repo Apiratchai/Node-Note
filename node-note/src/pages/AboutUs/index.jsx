@@ -1,32 +1,34 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { ArrowLeft } from "lucide-react";
 
 function index() {
-  const router = useRouter;
+  const router = useRouter(); // Fixed: Added () to useRouter
   const goToLandPage = () => {
-    router.push("index.jsx");
+    router.push("../");
   };
 
-  return(
-      <div className="flex flex-col min-h-screen transbg text-white">
-        <div className="absolute top-0 right-0 mt-4 mr-4">
-        </div>
-        <main className="flex flex-col items-center justify-center text-center gap-y-5 flex-1 px-6 pb-10">
-          <div className="mb-10">
-            {/* above is margin bottom */}
-            <h1 className="text-3xl sm:text-7xl md:text-8xl font-semibold">
-              Node<span className="block">Note</span>
-            </h1>
-          </div>
-          <div>
-          </div>
-            <div className="hover:cursor-pointer hover:-translate-y-1 bg-transparent hover:bg-white hover:text-black text-white font-semibold py-2 px-10 mt-10 rounded-full border border-white-500 transition duration-500"
-              onClick={goToLandPage}>
-              Go to note
-            </div>
-        </main>
+  return (
+    // min-h-screen this will make the last div always stick at the bottom
+    <div className="flex flex-col min-h-screen">
+      <div role="button"
+        className="flex flex-row justify-start m-2"
+        onClick={goToLandPage}>
+        <ArrowLeft />
+        <div className="font-semibold ml-2">back to Home</div>
       </div>
-  );
+      <section className="w-screen flex-1 mt-12">
+        <div className="flex justify-start items-center flex-col gap-6">
+          <h5 className="font-bold text-4xl">Members</h5>
+          <p className="text-2xl uppercase font-light">CoE33 Nodenote Group section2 friday
+          </p>
+          <p className="w-3/2 text-center text-2xl">1.Apiratchai Lakkum</p>
+          <p className="w-3/2 text-center text-2xl">2.Kunasin Salabsri</p>
+          <p className="w-3/2 text-center text-2xl">3.Achitapan Sutthiwanna</p>
+        </div>
+      </section>
+    </div>
+  )
 }
 
 export default index;
