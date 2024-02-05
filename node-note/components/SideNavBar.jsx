@@ -1,9 +1,10 @@
-import { ChevronsLeft, Menu, PlusCircle } from "lucide-react"
+import { ChevronsLeft, Menu, Search, PlusCircle } from "lucide-react"
 import { useRef, useState } from "react"
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../convex/_generated/api"
 import { useUser } from "@clerk/nextjs";
-import { Item } from "./item";
+import { Item } from "./Item";
+import { toast } from "sonner";
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
@@ -32,6 +33,16 @@ export default function MyComponent() {
   }
 
   const documents = useQuery(api.documents.get);
+  const create = useMutation(api.documents.create);
+
+  const onCreate = () => {
+    const promise = create({ title: "Untitled" })
+    toast.promise(promise, {
+      loading: "Creating a new note...",
+      success: "New note created",
+      error: "Failed to create a note"
+    })
+  }
 
   return (
     <>
@@ -45,7 +56,7 @@ export default function MyComponent() {
       >
         <div
           role="button"
-          className="h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-400 absolute top-3 right-2"
+          className="h-6 w-6 rounded-sm hover:bg-neutral-400 absolute top-3 right-2"
           onClick={collapse}
         >
           <ChevronsLeft />
@@ -54,8 +65,15 @@ export default function MyComponent() {
           <>{user.firstName + "'s Note"}</>
         </div>
         <div>
+          <div className="bg-slate-400">
+            <Item
+              label="Search"
+              icon={Search}
+              isSearch
+              onClick={() => { }} />
+          </div>
           <Item
-            onClick={() => { }}
+            onClick={onCreate}
             label="New page"
             icon={PlusCircle}
           />
