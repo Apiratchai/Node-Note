@@ -84,10 +84,12 @@ Item.Skeleton = function ItemSkeleton({ level }: { level?: number }) {
             style={{
                 paddingLeft: level ? `${(level * 12) + 25}px` : "12px"
             }}
-            className="flex gap-x-2 py-[3px]"
+            className="flex gap-x-2 py-[3px] animate-pulse"
         >
-            <div className="h-4 w-4">Loading</div>
-            <div className="h-4 w-[30%]">Loading</div>
+            <div className="h-4 w-4 bg-gray-400 rounded-full"></div> {/* Placeholder for icon */}
+            <div className="flex flex-col justify-center">
+                <div className="h-3 w-16 bg-gray-400 rounded-full mb-1"></div> {/* Placeholder for title */}
+            </div>
         </div>
     )
 }
