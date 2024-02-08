@@ -36,6 +36,14 @@ export const Item = ({
     } else {
         ChevronIcon = ChevronRight;
     }
+
+    const handleExpand = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+
+    ) => {
+        event.stopPropagation();
+        onExpand?.();
+    }
     return (
         <div
             onClick={onClick}
@@ -65,6 +73,21 @@ export const Item = ({
             <span className="truncate">
                 {label}
             </span>
+        </div>
+    )
+}
+
+
+Item.Skeleton = function ItemSkeleton({ level }: { level?: number }) {
+    return (
+        <div
+            style={{
+                paddingLeft: level ? `${(level * 12) + 25}px` : "12px"
+            }}
+            className="flex gap-x-2 py-[3px]"
+        >
+            <div className="h-4 w-4">Loading</div>
+            <div className="h-4 w-[30%]">Loading</div>
         </div>
     )
 }

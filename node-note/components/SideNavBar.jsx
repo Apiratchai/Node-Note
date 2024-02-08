@@ -1,10 +1,11 @@
 import { ChevronsLeft, Menu, Search, PlusCircle } from "lucide-react"
 import { useRef, useState } from "react"
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../convex/_generated/api"
+import { useMutation } from "convex/react";
+import { api } from "../convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
 import { Item } from "./Item";
 import { toast } from "sonner";
+import { DocumentList } from "./DocumentList";
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
@@ -32,7 +33,6 @@ export default function MyComponent() {
     }
   }
 
-  const documents = useQuery(api.documents.get);
   const create = useMutation(api.documents.create);
 
   const onCreate = () => {
@@ -79,10 +79,7 @@ export default function MyComponent() {
           />
         </div>
         <div className="mt-4">
-          {documents?.map((documents) => (
-            <p key={document._id}>
-              {documents.title}</p>
-          ))}
+          <DocumentList />
         </div>
         <div className="opacity-0 group-hover:opacity-100 transition cursor-ew-resize absolute h-full w-2 bg-gray-400 right-0 top-0">
           {/* this only indicate that user can resize the sidebar */}
