@@ -10,19 +10,19 @@ export const archive = mutation({
         if (!identity) {
             throw new Error("Not authenticated");
         }
+
         const userId = identity.subject;
 
         const existingDocument = await ctx.db.get(args.id);
 
         if (!existingDocument) {
-            throw new Error("Not found")
+            throw new Error("Not found");
         }
 
         if (existingDocument.userId !== userId) {
-            throw new Error("Unauthorized") // check user who can archive
+            throw new Error("Unauthorized");
         }
 
-        //this will archive all child recursivly
         const recursiveArchive = async (documentId: Id<"documents">) => {
             const children = await ctx.db
                 .query("documents")
@@ -32,24 +32,25 @@ export const archive = mutation({
                         .eq("parentDocument", documentId)
                 ))
                 .collect();
+
             for (const child of children) {
                 await ctx.db.patch(child._id, {
                     isArchived: true,
-                })
+                });
+
                 await recursiveArchive(child._id);
             }
         }
 
         const document = await ctx.db.patch(args.id, {
             isArchived: true,
-        })
+        });
 
-        recursiveArchive(args.id); // pass id to be recursively archive
+        recursiveArchive(args.id);
 
         return document;
     }
-}
-)
+})
 
 export const getSidebar = query({
     args: {
