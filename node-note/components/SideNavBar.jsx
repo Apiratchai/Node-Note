@@ -50,7 +50,7 @@ export default function MyComponent() {
       <aside
         ref={sideBarRef}
         className={
-          "group h-screen bg-gray-300 overflow-y-auto relative flex flex-col w-60 z-[9999] " +
+          "group/sidebar h-screen bg-gray-300 overflow-y-auto relative flex flex-col w-60 z-[9999] " +
           (isResetting ? "group transition-all ease-in-out duration-300" : "")
         }
       >
@@ -81,7 +81,7 @@ export default function MyComponent() {
         <div className="mt-4">
           <DocumentList />
         </div>
-        <div className="opacity-0 group-hover:opacity-100 transition cursor-ew-resize absolute h-full w-2 bg-gray-400 right-0 top-0">
+        <div className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-2 bg-gray-400 right-0 top-0">
           {/* this only indicate that user can resize the sidebar */}
         </div>
       </aside>

@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Plus } from "lucide-react";
 import { Id } from "../convex/_generated/dataModel";
 import classNames from "classnames";
 
@@ -52,7 +52,7 @@ export const Item = ({
                 paddingLeft: level ? `${(level * 12) + 12}px` : "12px"
             }}
             className={classNames(
-                "text-sm py-1 pr-3 w-full flex items-center font-medium"
+                "group text-sm py-1 pr-3 w-full flex items-center font-medium"
                 , active && ""
             )}>
             {!!id && (
@@ -73,6 +73,14 @@ export const Item = ({
             <span className="truncate">
                 {label}
             </span>
+            {!!id && (
+                <div className="ml-auto flex items-center gap-x-2">
+                    <div className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 ">
+                        <Plus className="h-4 w-4" />
+                    </div>
+
+                </div>
+            )}
         </div>
     )
 }
