@@ -3,6 +3,10 @@
 import { ChevronDown, ChevronRight, LucideIcon, Plus } from "lucide-react";
 import { Id } from "../convex/_generated/dataModel";
 import classNames from "classnames";
+import { useMutation } from "convex/react";
+import { api } from "../convex/_generated/api";
+import { useRouter } from "next/router";
+import { toast } from "sonner";
 
 interface ItemProps {
     id?: Id<"documents">;
@@ -37,6 +41,10 @@ export const Item = ({
         ChevronIcon = ChevronRight;
     }
 
+    const create = useMutation(api.documents.create);
+
+    const router = useRouter();
+
     const handleExpand = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
 
@@ -44,6 +52,27 @@ export const Item = ({
         event.stopPropagation();
         onExpand?.();
     }
+
+    const onCreate = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
+        event.stopPropagation();
+        if (!id) return;
+        const promise = create({ title: "Untitled", parentDocument: id })
+            .then((documentId) => {
+                if (!expanded) {
+                    onExpand?.();
+                }
+                // router.push(`/documents/${documentId}`)
+            })
+        toast.promise(promise, {
+            loading: "Creating a new note...",
+            success: "New note created",
+            error: "Failed to create a note",
+        }
+        )
+    }
+
     return (
         <div
             onClick={onClick}
@@ -74,7 +103,10 @@ export const Item = ({
                 {label}
             </span>
             {!!id && (
-                <div className="ml-auto flex items-center gap-x-2">
+                <div
+                    role="button"
+                    className="ml-auto flex items-center gap-x-2"
+                    onClick={onCreate}>
                     <div className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 ">
                         <Plus className="h-4 w-4" />
                     </div>

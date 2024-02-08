@@ -40,7 +40,7 @@ export default function MyComponent() {
     toast.promise(promise, {
       loading: "Creating a new note...",
       success: "New note created",
-      error: "Failed to create a note"
+      error: "Failed to create a note",
     })
   }
 
