@@ -14,7 +14,7 @@ export default function Footer() {
            
             <div>
             <button onClick={goToAboutUsPage} className="cursor-pointer px-5 hover:text-white hover:bg-white hover:bg-opacity-25 text-blue-500 transition duration-500">
-                    About us
+                    About Us
                 </button>
             </div>
             <div>
