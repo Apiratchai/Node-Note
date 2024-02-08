@@ -1,12 +1,13 @@
 "use client"
 
-import { ChevronDown, ChevronRight, LucideIcon, Plus } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Plus, Trash } from "lucide-react";
 import { Id } from "../convex/_generated/dataModel";
 import classNames from "classnames";
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useRouter } from "next/router";
 import { toast } from "sonner";
+import React from "react";
 
 interface ItemProps {
     id?: Id<"documents">;
@@ -21,7 +22,6 @@ interface ItemProps {
     icon: LucideIcon
 
 }
-
 export const Item = ({
     id,
     label,
@@ -39,6 +39,19 @@ export const Item = ({
         ChevronIcon = ChevronDown;
     } else {
         ChevronIcon = ChevronRight;
+    }
+
+    const archive = useMutation(api.documents.archive);
+    const onArchive = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
+        if (!id) return;
+        const promise = archive({ id });
+        toast.promise(promise, {
+            loading: "Moving to trash...",
+            success: "Note moved to trash",
+            error: "Failed to archive note",
+        })
     }
 
     const create = useMutation(api.documents.create);
@@ -105,15 +118,27 @@ export const Item = ({
             {!!id && (
                 <div
                     role="button"
-                    className="ml-auto flex items-center gap-x-2"
+                    className="ml-auto flex items-center gap-x-3"
                     onClick={onCreate}>
+                    <div
+                        role="button"
+                        className="opacity-0 group-hover:opacity-100 h-jull ml-auto rounded-sm hover:bg-neutral-300"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div role="button"
+                            onClick={onArchive}>
+                            <Trash className="h-4 w-4" />
+                        </div>
+                    </div>
                     <div className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 ">
                         <Plus className="h-4 w-4" />
                     </div>
 
+
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
     )
 }
 
