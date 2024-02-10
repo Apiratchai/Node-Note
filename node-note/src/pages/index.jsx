@@ -22,15 +22,15 @@ export default function Home() {
         <main className="flex flex-col items-center justify-center text-center gap-y-5 flex-1 px-6 pb-10">
           <div className="mb-10">
             {/* above is margin bottom */}
-            <h1 className="text-3xl sm:text-7xl md:text-8xl font-semibold">
+            <h1 className="text-3xl sm:text-7xl md:text-9xl font-semibold">
               Node<span className="block">Note</span>
             </h1>
           </div>
           <div>
-            <TypewriterTitle className />
+            <TypewriterTitle />
           </div>
           {isAuthenticated && !isLoading && (
-            <div className="hover:cursor-pointer hover:-translate-y-1 bg-transparent hover:bg-white hover:text-black text-white font-semibold py-2 px-10 mt-10 rounded-full border border-white-500 transition duration-500"
+            <div className="hover:cursor-pointer hover:-translate-y-1 bg-transparent hover:bg-white hover:text-black text-white font-semibold py-2 px-10 mt-10  text-3xl rounded-full border border-white-500 transition duration-500"
               onClick={goToNoteclick}>
               Go to note
             </div>

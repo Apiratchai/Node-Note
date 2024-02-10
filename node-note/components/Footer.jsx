@@ -13,12 +13,12 @@ export default function Footer() {
         <div className="flex flex-row justify-center ">
 
             <div>
-                <button onClick={goToAboutUsPage} className="cursor-pointer px-5 hover:text-white hover:bg-white hover:bg-opacity-25 text-blue-500 transition duration-500">
+                <button onClick={goToAboutUsPage} className="text-2xl cursor-pointer px-5 hover:text-white hover:bg-white hover:bg-opacity-25 text-blue-500 transition duration-500">
                     About Us
                 </button>
             </div>
             <div>
-                <button onClick={() => setOpenContact(true)} className="cursor-pointer px-5 hover:text-white hover:bg-white hover:bg-opacity-25 text-blue-500 transition duration-500">
+                <button onClick={() => setOpenContact(true)} className="text-2xl cursor-pointer px-5 hover:text-white hover:bg-white hover:bg-opacity-25 text-blue-500 transition duration-500">
                     Contact Us
                 </button>
                 <ContactPopup open={openContact} onClose={() => setOpenContact(false)} />

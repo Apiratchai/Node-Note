@@ -9,7 +9,7 @@ export default function TypewriterTitle() {
       }}
       onInit={(typewriter) => {
         typewriter
-          .typeString("Note taking app with node visualization")
+          .typeString("<span style='font-size:24px;'> Note taking app with node visualization</span>")
           .start();
       }}
     />
