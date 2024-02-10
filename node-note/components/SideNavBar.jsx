@@ -1,4 +1,4 @@
-import { ChevronsLeft, Menu, Search, PlusCircle } from "lucide-react"
+import { Plus, ChevronsLeft, Menu, Search, PlusCircle } from "lucide-react"
 import { useRef, useState } from "react"
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
@@ -80,6 +80,11 @@ export default function MyComponent() {
         </div>
         <div className="mt-4">
           <DocumentList />
+          <Item
+            onClick={onCreate}
+            icon={Plus}
+            label="Add a page"
+          />
         </div>
         <div className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-2 bg-gray-400 right-0 top-0">
           {/* this only indicate that user can resize the sidebar */}
