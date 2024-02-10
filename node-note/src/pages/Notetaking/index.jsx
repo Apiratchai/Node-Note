@@ -25,10 +25,10 @@ export default function Component() {
           <div className="text-center animate-bounce duration-0"> {/* Added text-center class */}
             Nice to meet you here {user.firstName}
           </div>
-          <div className="flex justify-center items-center border border-black rounded-full w-44 h-10 "
+          <div className="flex text-2xl text-blue-600 font-semibold justify-center items-center border border-black rounded-full w-60 h-14 hover:bg-gray-200 hover:-translate-y-1 transition ease-in-out duration-300"
             role="button"
             onClick={onCreate}>
-            <PlusCircle className="h-4 w-4 mr-2" />
+            <PlusCircle className="h-8 w-8 mr-2 text-blue-600" />
             create note
           </div>
         </div>

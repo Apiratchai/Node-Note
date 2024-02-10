@@ -1,4 +1,4 @@
-import { Plus, ChevronsLeft, Menu, Search, PlusCircle } from "lucide-react"
+import { Plus, ChevronsLeft, Menu, Search, PlusCircle, Trash } from "lucide-react"
 import { useRef, useState } from "react"
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
@@ -6,7 +6,8 @@ import { useUser } from "@clerk/nextjs";
 import { Item } from "./Item";
 import { toast } from "sonner";
 import { DocumentList } from "./DocumentList";
-import { Popover,PopoverTrigger,PopoverContent } from "@radix-ui/react-popover";
+import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover";
+import { TrashBox } from "./TrashBox";
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
@@ -86,6 +87,17 @@ export default function MyComponent() {
             icon={Plus}
             label="Add a page"
           />
+          <Popover>
+            <PopoverTrigger className="w-full mt-4">
+              <Item label="Trash" icon={Trash} />
+            </PopoverTrigger>
+            <PopoverContent
+              className="p-0 w-72"
+              side={"right"}
+            >
+              <TrashBox />
+            </PopoverContent>
+          </Popover>
         </div>
         <div className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-2 bg-gray-400 right-0 top-0">
           {/* this only indicate that user can resize the sidebar */}

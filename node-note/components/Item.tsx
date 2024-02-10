@@ -16,9 +16,9 @@ interface ItemProps {
     expanded?: boolean
     isSearch?: boolean;
     level?: number;
-    onExpand?: () => void;
+    onExpand?: () => void; //optional
     label: string;
-    onClick: () => void;
+    onClick?: () => void; //optional
     icon: LucideIcon
 
 }
