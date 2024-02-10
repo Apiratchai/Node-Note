@@ -1,7 +1,7 @@
 "uses client"
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation"
-import SideNavBar from "../components/SideNavBar"
+import SideNavBar from "./SideNavBar_backup"
 import HeadNavBar from "../components/HeadNavBar"
 import { SearchCommand } from "./SearchCommand";
 

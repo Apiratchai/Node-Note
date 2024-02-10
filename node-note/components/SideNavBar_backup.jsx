@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { DocumentList } from "./DocumentList";
 import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover";
 import { TrashBox } from "./TrashBox";
+import { useParams } from "next/navigation";
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
@@ -15,6 +16,8 @@ export default function MyComponent() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const { user } = useUser();
+
+  const params = useParams();
 
   const collapse = () => {
     if (sideBarRef.current) {
