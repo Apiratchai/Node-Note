@@ -86,25 +86,26 @@ export const TrashBox = () => {
                 {filteredDocuments?.map((document) => (
                     <div
                         key={document._id}
-                        role="button"
-                        onClick={() => onClick(document._id)}
-                        className="text-sm rounded-sm w-full hover:bg-white flex items-center text-primary justify-between"
+                        
+                        className="text-sm rounded-sm w-full flex items-center text-primary justify-between"
                     >
-                        <span className="truncate pl-2">
+                        <span className="truncate pl-2 hover:bg-gray-100 w-full"
+                        role="button"
+                        onClick={() => onClick(document._id)}>
                             {document.title}
                         </span>
                         <div className="flex items-center">
                             <div
                                 onClick={(e) => onRestore(e, document._id)}
                                 role="button"
-                                className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                                className="rounded-sm p-2 hover:bg-neutral-100"
                             >
                                 <Undo className="h-4 w-4 text-muted-foreground" />
                             </div>
                             <div
                                 onClick={(e) => onRemove(e, document._id)}
                                 role="button"
-                                className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                                className="rounded-sm p-2 hover:bg-neutral-100"
                             >
                                 <Trash className="h-4 w-4 text-muted-foreground" />
                             </div>
