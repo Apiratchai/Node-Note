@@ -2,6 +2,7 @@
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation"
 import SideNavBar from "../components/SideNavBar"
+import HeadNavBar from "../components/HeadNavBar"
 import { SearchCommand } from "./SearchCommand";
 
 
