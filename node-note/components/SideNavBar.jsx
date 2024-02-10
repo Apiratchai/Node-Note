@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { Item } from "./Item";
 import { toast } from "sonner";
 import { DocumentList } from "./DocumentList";
+import { Popover,PopoverTrigger,PopoverContent } from "@radix-ui/react-popover";
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
