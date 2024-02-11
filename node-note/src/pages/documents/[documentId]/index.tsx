@@ -6,7 +6,6 @@ const DocumentIdPage = () => {
         <NoteTakingLayout>
             <HeadNavBar/>
             <div>
-                Document
             </div>
         </NoteTakingLayout>
     )

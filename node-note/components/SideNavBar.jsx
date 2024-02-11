@@ -11,6 +11,7 @@ import { TrashBox } from "./TrashBox";
 import { useParams } from "next/navigation";
 import { Navbar } from "./Navbar";
 import classNames from "classnames";
+import HeadNavBar from "./HeadNavBar";
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
