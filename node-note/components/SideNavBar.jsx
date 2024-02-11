@@ -1,4 +1,4 @@
-import { Plus, ChevronsLeft, Menu, Search, PlusCircle, Trash } from "lucide-react"
+import { Plus, ChevronsLeft, MenuIcon, Search, PlusCircle, Trash } from "lucide-react"
 import { useRef, useState } from "react"
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
@@ -9,9 +9,12 @@ import { DocumentList } from "./DocumentList";
 import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover";
 import { TrashBox } from "./TrashBox";
 import { useParams } from "next/navigation";
+import { Navbar } from "./Navbar";
+import classNames from "classnames";
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
+  const navbarRef = useRef(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -24,6 +27,8 @@ export default function MyComponent() {
       setIsCollapsed(true);
       setIsResetting(true);
       sideBarRef.current.style.width = "0";
+      navbarRef.current.style.setProperty("width", "100%");
+      navbarRef.current.style.setProperty("left", "0");
       setTimeout(() => {
         setIsResetting(false);
       }, 300);
@@ -34,6 +39,11 @@ export default function MyComponent() {
       setIsCollapsed(false);
       setIsResetting(true);
       sideBarRef.current.style.width = "240px";
+      navbarRef.current.style.setProperty(
+        "width", "calc(100% - 240px)")
+      navbarRef.current.style.setProperty(
+        "left", "240px")
+
       setTimeout(() => setIsResetting(false), 300);
     }
   }
@@ -106,14 +116,24 @@ export default function MyComponent() {
           {/* this only indicate that user can resize the sidebar */}
         </div>
       </aside>
-      {/* This will only appear if collapsed */}
-      {isCollapsed && (
-        <div className="bg-transparent absolute top-5 left-5"
-          role="button"
-          onClick={resetWidth}>
-          <Menu />
-        </div>
-      )}
+      <div
+        ref={navbarRef}
+        className={classNames(
+          "absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",
+          isResetting && "transition-all ease-in-out duration-300",
+        )}
+      >
+        {!!params.documentId ? (
+          <Navbar
+            isCollapsed={isCollapsed}
+            onResetWidth={resetWidth}
+          />
+        ) : (
+          <nav className="bg-transparent px-3 py-2 w-full">
+            {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
+          </nav>
+        )}
+      </div>
     </>
   );
 }
