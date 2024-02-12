@@ -74,9 +74,6 @@ export const Title = ({
                     </span>
                 </Button>
             )}
-            <div className="absolute right-0 mt-5">
-                <UserButton/>
-            </div>
         </div>
     )
 }
