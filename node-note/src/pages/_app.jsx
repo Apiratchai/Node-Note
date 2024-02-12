@@ -3,7 +3,7 @@ import { Toaster } from "sonner"
 import { ConvexClientProvider } from "../../components/ConvexClientProvider"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
-import { ModalProvider } from "@/components/providers/modal-provider";
+import { ModalProvider} from "../../@/components/ui/providers/modal-provider"
 
 export default function App({
   Component,
