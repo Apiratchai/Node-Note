@@ -20,7 +20,7 @@ export default function Component() {
   return (
     <NoteTakingLayout>
       <div className="flex flex-col h-screen">
-        <HeadNavBar />
+        {/* <HeadNavBar /> */}
         <div className="h-full flex flex-col items-center justify-center space-y-4">
           <div className="text-center animate-bounce duration-0"> {/* Added text-center class */}
             Nice to meet you here {user.firstName}

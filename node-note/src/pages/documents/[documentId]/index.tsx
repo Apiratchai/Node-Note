@@ -4,7 +4,7 @@ import HeadNavBar from "../../../../components/HeadNavBar";
 const DocumentIdPage = () => {
     return (
         <NoteTakingLayout>
-            <HeadNavBar/>
+            {/* <HeadNavBar/> */}
             <div>
             </div>
         </NoteTakingLayout>
