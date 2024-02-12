@@ -10,7 +10,7 @@ export default function Home() {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const router = useRouter();
   const goToNoteclick = () => {
-    router.push("/Notetaking")
+    router.push("/documents")
   }
 
   return (

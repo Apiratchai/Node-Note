@@ -56,7 +56,7 @@ export const TrashBox = () => {
         });
 
         if (params.documentId === documentId) {
-            router.push("/Notetaking"); //this will handle 404 removed document error
+            router.push("/documents"); //this will handle 404 removed document error
         }
     };
 

@@ -1,8 +1,7 @@
-import HeadNavBar from "../../../../components/HeadNavBar";
-import NoteTakingLayout from "../../../../components/NoteTakingLayout"
+import NoteTakingLayout from "../../../components/NoteTakingLayout"
 import { useUser } from "@clerk/nextjs";
 import { PlusCircle } from "lucide-react";
-import { api } from "../../../../convex/_generated/api"
+import { api } from "../../../convex/_generated/api";
 import { toast } from "sonner";
 import { useMutation } from "convex/react";
 

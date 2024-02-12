@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { Input } from "../@/components/ui/input";
 import { Button } from "../@/components/ui/button";
 import { Skeleton } from "../@/components/ui/skeleton";
+import { UserButton } from "@clerk/nextjs";
 
 interface TitleProps {
     initialData: Doc<"documents">;
@@ -50,7 +51,7 @@ export const Title = ({
     }
 
     return (
-        <div className="flex items-center gap-x-1">
+        <div className="flex flex-row items-center gap-x-1">
             {!!initialData.icon && <p>{initialData.icon}</p>}
             {isEditing ? (
                 <Input
@@ -73,6 +74,9 @@ export const Title = ({
                     </span>
                 </Button>
             )}
+            <div className="absolute right-0 mt-5">
+                <UserButton/>
+            </div>
         </div>
     )
 }
