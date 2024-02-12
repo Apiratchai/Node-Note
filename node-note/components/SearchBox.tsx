@@ -31,9 +31,9 @@ export const SearchBox = () => {
     }
 
     return (
-        <div className="text-sm bg-white border border-gray-300 rounded-r-lg">
+        <div className="text-sm bg-white border border-gray-300 rounded-r-lg mt-16 pt-2">
             <div className="flex items-center gap-x-1 p-2">
-                <Search className="h-4 w-4" />
+                <Search className="h-4 w-4 mr-2" />
                 <Input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
