@@ -56,7 +56,7 @@ export const TrashBox = () => {
         });
 
         if (params.documentId === documentId) {
-            router.push("/document");
+            router.push("/Notetaking"); //this will handle 404 removed document error
         }
     };
 
@@ -86,12 +86,12 @@ export const TrashBox = () => {
                 {filteredDocuments?.map((document) => (
                     <div
                         key={document._id}
-                        
+
                         className="text-sm rounded-sm w-full flex items-center text-primary justify-between"
                     >
                         <span className="truncate pl-2 hover:bg-gray-100 w-full"
-                        role="button"
-                        onClick={() => onClick(document._id)}>
+                            role="button"
+                            onClick={() => onClick(document._id)}>
                             {document.title}
                         </span>
                         <div className="flex items-center">

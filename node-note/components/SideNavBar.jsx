@@ -84,7 +84,7 @@ export default function MyComponent() {
           <div className="bg-slate-400">
             <Popover>
               <PopoverTrigger className="w-full">
-                <Item lable="Search" icon={Search} isSearch />
+                <Item label="Search" icon={Search} isSearch />
               </PopoverTrigger>
               <PopoverContent
                 className="p-0 w-[200%]"
