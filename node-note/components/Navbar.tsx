@@ -37,9 +37,8 @@ export const Navbar = ({
                         onClick={onResetWidth}
                         className="h-6 w-6" />
                 )}
-                <div className="flex items-center justify-between wf-full py-5">
-                    {/* above mt-20 is tricky */}
-                    <Title initialData={document} />
+                <div className="flex items-center justify-between w-auto py-5">
+                    <Title initialData={document}/>
                 </div>
             </nav>
         </>

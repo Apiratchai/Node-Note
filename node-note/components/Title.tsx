@@ -60,13 +60,14 @@ export const Title = ({
                     onChange={onChange}
                     onKeyDown={onKeyDown}
                     value={title}
-                    className="h-7 px-2 focus-visible:ring-transparent" />
+                    spellCheck={false}
+                    className="px-2 focus:ring-transparent text-xl" />
             ) : (
                 <Button
                     onClick={enableInput}
-                    size="sm"
+                    size="lg"
                     variant="ghost"
-                    className="font-normal h-auto">
+                    className="font-normal underline underline-offset-4 text-xl">
                     <span className="truncate">
                         {initialData?.title}
                     </span>

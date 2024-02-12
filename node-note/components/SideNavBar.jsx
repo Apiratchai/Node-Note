@@ -11,7 +11,7 @@ import { TrashBox } from "./TrashBox";
 import { useParams } from "next/navigation";
 import { Navbar } from "./Navbar";
 import classNames from "classnames";
-import HeadNavBar from "./HeadNavBar";
+import { SearchBox } from "./SearchBox"
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
@@ -82,11 +82,17 @@ export default function MyComponent() {
         </div>
         <div>
           <div className="bg-slate-400">
-            <Item
-              label="Search"
-              icon={Search}
-              isSearch
-              onClick={() => { }} />
+            <Popover>
+              <PopoverTrigger className="w-full">
+                <Item lable="Search" icon={Search} isSearch />
+              </PopoverTrigger>
+              <PopoverContent
+                className="p-0 w-[200%]"
+                side={"right"}
+              >
+                <SearchBox />
+              </PopoverContent>
+            </Popover>
           </div>
           <Item
             onClick={onCreate}
@@ -116,11 +122,11 @@ export default function MyComponent() {
         <div className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-2 bg-gray-400 right-0 top-0">
           {/* this only indicate that user can resize the sidebar */}
         </div>
-      </aside>
+      </aside >
       <div
         ref={navbarRef}
         className={classNames(
-          "absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",
+          "absolute top-0 left-60 w-[calc(100%-240px)]",
           isResetting && "transition-all ease-in-out duration-300",
         )}
       >
