@@ -3,7 +3,6 @@ import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation"
 import SideNavBar from "./SideNavBar"
 import HeadNavBar from "../components/HeadNavBar"
-import { SearchCommand } from "./SearchCommand";
 
 
 const NoteTakingLayout = ({
@@ -26,7 +25,6 @@ const NoteTakingLayout = ({
         <div className="h-screen flex ">
             <SideNavBar />
             <div className="flex-1 h-screen overflow-y-auto">
-                <SearchCommand />
                 {children}
             </div>
         </div>

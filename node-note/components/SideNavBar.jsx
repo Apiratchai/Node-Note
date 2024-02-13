@@ -2,7 +2,7 @@ import { Plus, ChevronsLeft, MenuIcon, Search, PlusCircle, Trash } from "lucide-
 import { useRef, useState } from "react"
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
-import { useUser } from "@clerk/nextjs";
+import { useUser, UserButton } from "@clerk/nextjs";
 import { Item } from "./Item";
 import { toast } from "sonner";
 import { DocumentList } from "./DocumentList";
@@ -11,7 +11,7 @@ import { TrashBox } from "./TrashBox";
 import { useParams } from "next/navigation";
 import { Navbar } from "./Navbar";
 import classNames from "classnames";
-import HeadNavBar from "./HeadNavBar";
+import { SearchBox } from "./SearchBox"
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
@@ -66,13 +66,13 @@ export default function MyComponent() {
       <aside
         ref={sideBarRef}
         className={
-          "group/sidebar h-screen bg-gray-300 overflow-y-auto relative flex flex-col w-60 z-[9999] " +
+          "group/sidebar h-full bg-gray-300 overflow-y-auto relative flex flex-col w-60 z-[999999] " +
           (isResetting ? "group transition-all ease-in-out duration-300" : "")
         }
       >
         <div
           role="button"
-          className="h-6 w-6 rounded-sm hover:bg-neutral-400 absolute top-3 right-2"
+          className="h-6 w-6 rounded-sm hover:bg-neutral-400 absolute top-3 right-2 "
           onClick={collapse}
         >
           <ChevronsLeft />
@@ -82,11 +82,17 @@ export default function MyComponent() {
         </div>
         <div>
           <div className="bg-slate-400">
-            <Item
-              label="Search"
-              icon={Search}
-              isSearch
-              onClick={() => { }} />
+            <Popover>
+              <PopoverTrigger className="w-full">
+                <Item label="Search" icon={Search} isSearch />
+              </PopoverTrigger>
+              <PopoverContent
+                className="p-0 w-[200%]"
+                side={"right"}
+              >
+                <SearchBox />
+              </PopoverContent>
+            </Popover>
           </div>
           <Item
             onClick={onCreate}
@@ -113,14 +119,14 @@ export default function MyComponent() {
             </PopoverContent>
           </Popover>
         </div>
-        <div className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-2 bg-gray-400 right-0 top-0">
+        <div className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-gray-400 right-0 top-0">
           {/* this only indicate that user can resize the sidebar */}
         </div>
-      </aside>
+      </aside >
       <div
         ref={navbarRef}
         className={classNames(
-          "absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",
+          "absolute z-[99999] top-0 left-60 w-[calc(100%-240px)]",
           isResetting && "transition-all ease-in-out duration-300",
         )}
       >
@@ -134,6 +140,9 @@ export default function MyComponent() {
             {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
           </nav>
         )}
+      </div>
+      <div className="absolute right-0">
+        <UserButton />
       </div>
     </>
   );
