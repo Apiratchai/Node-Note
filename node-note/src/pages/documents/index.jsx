@@ -1,10 +1,9 @@
-import HeadNavBar from "../../../../components/HeadNavBar";
-import NoteTakingLayout from "../../../../components/NoteTakingLayout"
 import { useUser } from "@clerk/nextjs";
-import { PlusCircle } from "lucide-react";
-import { api } from "../../../../convex/_generated/api"
-import { toast } from "sonner";
 import { useMutation } from "convex/react";
+import { PlusCircle } from "lucide-react";
+import { toast } from "sonner";
+import NoteTakingLayout from "../../../../components/NoteTakingLayout";
+import { api } from "../../../../convex/_generated/api";
 
 export default function Component() {
   const user = useUser();
