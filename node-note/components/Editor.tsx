@@ -10,7 +10,7 @@ import {
     useBlockNote
 } from "@blocknote/react";
 
-import "@blocknote/core/style.css";
+import "@blocknote/react/style.css";
 
 
 interface EditorProps {
@@ -50,7 +50,7 @@ const Editor = ({
         <div>
             <BlockNoteView
                 editor={editor}
-                theme={"dark"}
+                theme={"light"}
             />
         </div>
     )
