@@ -4,6 +4,7 @@ import { useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "../@/components/ui/button";
+import { ConfirmModal } from "../@/components/ui/modals/confirm-modal";
 import { api } from "../convex/_generated/api";
 import { Id } from "../convex/_generated/dataModel";
 
@@ -53,13 +54,15 @@ export const Banner = ({
             className="border-white bg-transparent hover:bg-priimary/5 text-white hover:text-white p-1 px-2 h-auto font-normal">
                 Restore Page
             </Button>
-            <Button
-            size="sm"
-            onClick={onRemove}
-            variant="outline"
-            className="border-white bg-transparent hover:bg-priimary/5 text-white hover:text-white p-1 px-2 h-auto font-normal">
-                Delete forever
-            </Button>
+            <ConfirmModal>
+                <Button
+                size="sm"
+                onClick={onRemove}
+                variant="outline"
+                className="border-white bg-transparent hover:bg-priimary/5 text-white hover:text-white p-1 px-2 h-auto font-normal">
+                    Delete forever
+                </Button>
+            </ConfirmModal>
         </div>
     )
 }
