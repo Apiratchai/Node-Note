@@ -26,10 +26,8 @@
 }
 
 .cl-avatarBox {
-  width: 6em;
-  height: 6em;
+  width: 4em;
+  height: 4em;
   border-radius: 50%;
-  border: 0.4em solid rgb(51, 107, 226);
 }
-
 

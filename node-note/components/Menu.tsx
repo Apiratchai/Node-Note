@@ -54,7 +54,7 @@ export const Menu = ({
             alignOffset={8}
             forceMount
             >
-                <DropdownMenuItem onClick={onArchive}>
+                <DropdownMenuItem  role="button"  className="w-full border-b hover:bg-gray-100"onClick={onArchive}>
                     <Trash className="h-4 w-4 mr-2"/>
                     Delete
                 </DropdownMenuItem>

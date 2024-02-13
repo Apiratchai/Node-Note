@@ -24,8 +24,8 @@ export const SearchBox = () => {
 
     if (documents === undefined) {
         return (
-            <div className="h-full flex items-center justify-center p-4">
-                <Spinner size="lg" />
+            <div className="h-full flex items-center justify-center pt-16">
+                <Spinner size="md animate-spin" />
             </div>
         );
     }

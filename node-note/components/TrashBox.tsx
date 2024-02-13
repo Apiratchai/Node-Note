@@ -63,7 +63,7 @@ export const TrashBox = () => {
     if (documents === undefined) {
         return (
             <div className="h-full flex items-center justify-center p-4">
-                <Spinner size="lg" />
+                <Spinner size="lg animate-spin" />
             </div>
         );
     }

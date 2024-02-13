@@ -100,7 +100,7 @@ export const Item = ({
             {!!id && (
                 <div
                     role="button"
-                    className="h-full rounded-small hover:bg-neutral-300"
+                    className="h-full rounded-small hover:bg-gray-300"
                     onClick={handleExpand}>
                     <ChevronIcon className="h-4 w-4 shrink-0" />
                 </div>

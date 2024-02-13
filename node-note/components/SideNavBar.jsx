@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import { Navbar } from "./Navbar";
 import classNames from "classnames";
 import { SearchBox } from "./SearchBox"
+import { UserSettingBox } from "./UserSettingBox"
 
 export default function MyComponent() {
   const sideBarRef = useRef(null);
@@ -66,22 +67,37 @@ export default function MyComponent() {
       <aside
         ref={sideBarRef}
         className={
-          "group/sidebar h-full bg-gray-300 overflow-y-auto relative flex flex-col w-60 z-[999999] " +
+          "group/sidebar h-full bg-gray-200 overflow-y-auto relative flex flex-col w-60 z-[999999] " +
           (isResetting ? "group transition-all ease-in-out duration-300" : "")
         }
       >
         <div
           role="button"
-          className="h-6 w-6 rounded-sm hover:bg-neutral-400 absolute top-3 right-2 "
+          className="h-6 w-6 rounded-sm hover:bg-gray-300 absolute top-3 right-2 "
           onClick={collapse}
         >
           <ChevronsLeft />
         </div>
         <div className="flex font-semibold justify-center items-center border border-black w-full h-10 pr-3">
-          <>{user.firstName + "'s Note"}</>
+          <Popover>
+            <PopoverTrigger className="w-full">
+              <div className="w-full">
+                {user.firstName + "'s Note"}
+              </div>
+            </PopoverTrigger>
+            <PopoverContent
+              className=" w-[200%]"
+              side={"right"}
+            >
+              <div className="text-sm bg-white ml-3 border border-gray-300 rounded-r-lg">
+                <UserSettingBox/>
+              </div>
+            </PopoverContent>
+          </Popover>
+
         </div>
         <div>
-          <div className="bg-slate-400">
+          <div className="hover:bg-gray-300">
             <Popover>
               <PopoverTrigger className="w-full">
                 <Item label="Search" icon={Search} isSearch />
@@ -94,21 +110,25 @@ export default function MyComponent() {
               </PopoverContent>
             </Popover>
           </div>
-          <Item
-            onClick={onCreate}
-            label="New page"
-            icon={PlusCircle}
-          />
+          <div className="hover:bg-gray-300">
+            <Item
+              onClick={onCreate}
+              label="New page"
+              icon={PlusCircle}
+            />
+          </div>
         </div>
         <div className="mt-4">
           <DocumentList />
-          <Item
-            onClick={onCreate}
-            icon={Plus}
-            label="Add a page"
-          />
+          <div className="hover:bg-gray-300">
+            <Item
+              onClick={onCreate}
+              icon={Plus}
+              label="Add a page"
+            />
+          </div>
           <Popover>
-            <PopoverTrigger className="w-full mt-4">
+            <PopoverTrigger className="w-full mt-4 hover:bg-gray-300">
               <Item label="Trash" icon={Trash} />
             </PopoverTrigger>
             <PopoverContent
@@ -137,12 +157,9 @@ export default function MyComponent() {
           />
         ) : (
           <nav className="bg-transparent px-5 py-5 w-full">
-            {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
+            {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6" />}
           </nav>
         )}
-      </div>
-      <div className="absolute right-0">
-        <UserButton />
       </div>
     </>
   );

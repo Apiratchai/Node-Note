@@ -8,6 +8,7 @@ import { Id } from "../convex/_generated/dataModel";
 import { Banner } from "./Banner";
 import { Menu } from "./Menu";
 import { Title } from "./Title";
+import { UserButton } from "@clerk/nextjs";
 
 interface NavbarProps {
     isCollapsed: boolean;
@@ -35,18 +36,23 @@ export const Navbar = ({
     }
     return (
         <>
-            <nav className="px-5 flex items-center gap-x-4">
+            <nav className="pl-5 flex items-center gap-x-4">
                 {isCollapsed && (
                     <MenuIcon
                         role="button"
                         onClick={onResetWidth}
-                        className="h-6 w-6" />
+                        className="h-6 w-6 hover:bg-gray-100" />
                 )}
                 <div className="flex items-center justify-between w-full py-5">
                     {/* above mt-20 is tricky */}
                     <Title initialData={document} />
-                    <div className="flex items-center gap-x-2">
-                        <Menu documentId={document._id} />
+                    <div>
+                        This will be toggle button
+                    </div>
+                    <div className="flex items-center gap-x-2 ">
+                        <div className="hover:bg-gray-100">
+                            <Menu documentId={document._id} />
+                        </div>
                     </div>
                 </div>
             </nav>
