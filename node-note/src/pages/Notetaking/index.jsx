@@ -1,21 +1,13 @@
-<<<<<<< HEAD
 import { useUser } from "@clerk/nextjs";
-=======
-import NoteTakingLayout from "../../../components/NoteTakingLayout"
-import { useUser } from "@clerk/nextjs";
-import { PlusCircle } from "lucide-react";
-import { api } from "../../../convex/_generated/api";
-import { toast } from "sonner";
->>>>>>> 91c475763cafe3a49ce73b3c2be0da36a4f5f865
 import { useMutation } from "convex/react";
 import { PlusCircle } from "lucide-react";
 import { toast } from "sonner";
-import NoteTakingLayout from "../../../../components/NoteTakingLayout";
-import { api } from "../../../../convex/_generated/api";
+import NoteTakingLayout from "../../../components/NoteTakingLayout";
+import { api } from "../../../convex/_generated/api";
 
 export default function Component() {
   const user = useUser();
-  const create = useMutation(api.documents.create); //create api  
+  const create = useMutation(api.documents.create); //create api 
   const onCreate = () => {
     const promise = create({ title: "Untitled" })
     toast.promise(promise, {
@@ -27,6 +19,7 @@ export default function Component() {
   return (
     <NoteTakingLayout>
       <div className="flex flex-col h-screen">
+        {/* <HeadNavBar /> */}
         <div className="h-full flex flex-col items-center justify-center space-y-4">
           <div className="text-center animate-bounce duration-0"> {/* Added text-center class */}
             Nice to meet you here {user.firstName}

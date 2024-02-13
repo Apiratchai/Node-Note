@@ -1,5 +1,4 @@
 'use client';
-import { useState } from "react";
 
 const ContactPopup = ({ open, onClose }) => {
 
@@ -21,9 +20,9 @@ const ContactPopup = ({ open, onClose }) => {
               { name: "Achitapan Sutthiwanna", role: "Front end", facebook: "https://web.facebook.com/A.Sutthivanna", email: "" }
             ].map((member, index) => (
               <div key={index} className="flex flex-row justify-between items-center">
-                <div className="text-xl text-black">{member.name}</div>
-                <div className="text-xs font-bold text-green-700 absolute ml-60 mt-1">{member.role}</div>
-                <div className="flex gap-3">
+                <div className="text-sm md:text-xl text-black">{member.name}</div>
+                <div className="text-xs font-bold text-green-700 absolute ml-40 md:ml-60 mt-1">{member.role}</div>
+                <div className="flex gap-3 test-xs md:text-base">
                   <a href={member.facebook} className="cursor-pointer  text-blue-500 px-1 hover:text-blue-500 hover:bg-blue-500 hover:bg-opacity-25 text-black transition duration-175">Facebook</a>
                   <a href={member.email} className="cursor-pointer text-orange-400 px-1 hover:text-orange-500 hover:bg-orange-500 hover:bg-opacity-25 text-black transition duration-175">Email</a>
                 </div>
