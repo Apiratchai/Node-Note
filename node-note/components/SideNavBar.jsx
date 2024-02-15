@@ -80,7 +80,7 @@ export default function MyComponent() {
         </div>
         <div className="flex font-semibold justify-center items-center border border-black w-full h-10 pr-3">
           <Popover>
-            <PopoverTrigger className="w-full">
+            <PopoverTrigger className="w-full border-gray-300 ">
               <div className="w-full">
                 {user.firstName + "'s Note"}
               </div>
