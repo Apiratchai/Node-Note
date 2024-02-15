@@ -4,7 +4,6 @@ import { useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "../@/components/ui/button";
-import { ConfirmModal } from "../@/components/ui/modals/confirm-modal";
 import { api } from "../convex/_generated/api";
 import { Id } from "../convex/_generated/dataModel";
 
@@ -43,26 +42,24 @@ export const Banner = ({
     }
 
     return (
-        <div className="w-full bg-rose-500 text-center text-base p-2 text-white flex items-center gap-x-2 justify-center">
+        <div className="w-full bg-rose-500 text-center text-base p-2 text-white flex items-center gap-x-3 justify-center">
             <p>
                 This page is in the trash.
             </p>
             <Button
-            size="sm"
-            onClick={onRestore}
-            variant="outline"
-            className="border-white bg-transparent hover:bg-priimary/5 text-white hover:text-white p-1 px-2 h-auto font-normal">
+                size="sm"
+                onClick={onRestore}
+                variant="outline"
+                className="border-white bg-white hover:bg-rose-400 hover:text-white text-black p-1 px-2 h-auto font-normal">
                 Restore Page
             </Button>
-            <ConfirmModal>
-                <Button
+            <Button
                 size="sm"
                 onClick={onRemove}
                 variant="outline"
-                className="border-white bg-transparent hover:bg-priimary/5 text-white hover:text-white p-1 px-2 h-auto font-normal">
-                    Delete forever
-                </Button>
-            </ConfirmModal>
+                className="border-white bg-transparent hover:bg-transparent/10 text-white p-1 px-2 h-auto font-normal">
+                Delete forever
+            </Button>
         </div>
     )
 }

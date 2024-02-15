@@ -7,6 +7,7 @@ import { ElementRef, useRef, useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import TextareaAutosize from "react-textarea-autosize";
+import { useCoverImage } from "../hooks/useCoverImage";
 
 interface ToolbarProps {
     initialData: Doc<"documents">;
@@ -63,6 +64,7 @@ export const Toolbar = ({
         })
     }
 
+    const coverImage = useCoverImage()
 
     return (
         <div className="pl-[54px] group relative">
@@ -103,7 +105,7 @@ export const Toolbar = ({
                         className="text-xs hover:bg-gray-100"
                         variant="outline"
                         size="sm"
-                        onClick={() => { }}>
+                        onClick={coverImage.onOpen}>
                         <ImageIcon className="h-4 w-4 mr-2" />
                         Add cover
                     </Button>
