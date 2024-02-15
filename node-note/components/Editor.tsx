@@ -38,7 +38,7 @@ const Editor = ({
         editable,
         initialContent:
             initialContent
-                ? JSON.parse(initialContent) as PartialBlock[]
+                ? JSON.parse(initialContent)
                 : undefined,
         onEditorContentChange: (editor) => {
             onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
