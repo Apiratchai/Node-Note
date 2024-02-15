@@ -89,8 +89,8 @@ export default function MyComponent() {
               className=" w-[200%]"
               side={"right"}
             >
-              <div className="text-sm bg-white ml-3 border border-gray-300 rounded-r-lg">
-                <UserSettingBox/>
+              <div className="text-sm bg-white ml-3 border border-gray-300 rounded-r-lg hover:bg-gray-300">
+                <UserSettingBox className="hover:bg-gray-300"/>
               </div>
             </PopoverContent>
           </Popover>
