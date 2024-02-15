@@ -59,7 +59,7 @@ export const Cover = ({
           <Popover>
             <PopoverTrigger>
               <Button
-                onClick={() => coverImage.onOpen}
+                onClick={()=> coverImage.onReplace(url)}
                 className="text-muted-foreground text-xs bg-white border"
                 variant="outline"
                 size="sm"

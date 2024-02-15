@@ -29,7 +29,7 @@
     "**/*.tsx",
     "components/Navigation.jsx",
     ".next/types/**/*.ts"
-, "src/pages/(routes)documents/index.jsx"  ],
+, "src/pages/(routes)documents/index.jsx", "src/pages/documents/[documentId]/indextsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -68,7 +68,7 @@ export const Title = ({
                     onClick={enableInput}
                     size="lg"
                     variant="ghost"
-                    className="font-normal underline underline-offset-4 text-xl">
+                    className="font-normal underline underline-offset-4 text-xl w-0">
                     <span className="truncate">
                         {initialData?.title}
                     </span>

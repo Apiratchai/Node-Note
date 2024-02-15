@@ -8,7 +8,7 @@ import { Id } from "../convex/_generated/dataModel";
 import { Banner } from "./Banner";
 import { Menu } from "./Menu";
 import { Title } from "./Title";
-import { UserButton } from "@clerk/nextjs";
+import { Publish } from "./Publish";
 
 interface NavbarProps {
     isCollapsed: boolean;
@@ -49,7 +49,8 @@ export const Navbar = ({
                     <div>
                         This will be toggle button
                     </div>
-                    <div className="flex items-center gap-x-2 ">
+                    <div className="flex items-center gap-x-2  ">
+                        <Publish initialData={document}/>
                         <div className="hover:bg-gray-100">
                             <Menu documentId={document._id} />
                         </div>

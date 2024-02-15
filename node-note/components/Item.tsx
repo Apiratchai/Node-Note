@@ -100,7 +100,7 @@ export const Item = ({
             {!!id && (
                 <div
                     role="button"
-                    className="h-full rounded-small hover:bg-gray-300"
+                    className="h-full rounded-small hover:bg-gray-300 mr-2"
                     onClick={handleExpand}>
                     <ChevronIcon className="h-4 w-4 shrink-0" />
                 </div>
@@ -110,7 +110,7 @@ export const Item = ({
                     {documentIcon}
                 </div>
             ) : (
-                <Icon className="shrink-0 h-[18px] mr-2" />
+                <Icon className="shrink-0 h-[18px] w-[18px] mr-2" />
             )}
             <span className="truncate">
                 {label}
