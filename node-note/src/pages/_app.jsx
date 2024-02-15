@@ -2,6 +2,7 @@ import "../styles/globals.css"
 import { Toaster } from "sonner"
 import { ConvexClientProvider } from "../../components/ConvexClientProvider"
 import { dark } from "@clerk/themes"
+import { EdgeStoreProvider } from '../lib/edgestore';
 
 export default function App({
   Component,
@@ -12,9 +13,11 @@ export default function App({
       appearance={{
         baseTheme: dark
       }}>
+      <EdgeStoreProvider>
       <Toaster position="bottom-center" />
       {/* above is popup notification from sonner */}
-      <Component {...pageProps} />
+        <Component {...pageProps} />
+      </EdgeStoreProvider>
     </ConvexClientProvider>
   )
 }

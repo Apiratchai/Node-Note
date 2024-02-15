@@ -36,7 +36,7 @@ export const Navbar = ({
     }
     return (
         <>
-            <nav className="pl-5 flex items-center gap-x-4">
+            <nav className="pl-5 bg-white flex items-center gap-x-4">
                 {isCollapsed && (
                     <MenuIcon
                         role="button"

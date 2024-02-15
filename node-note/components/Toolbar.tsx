@@ -1,5 +1,5 @@
 "use client"
-import { Doc } from "../convex/_generated/dataModel";
+import { Doc, Id } from "../convex/_generated/dataModel";
 import { IconPicker } from "./IconPicker";
 import { Button } from "../@/components/ui/button";
 import { X, Smile, ImageIcon } from "lucide-react";
@@ -8,6 +8,11 @@ import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import TextareaAutosize from "react-textarea-autosize";
 import { useCoverImage } from "../hooks/useCoverImage";
+import { SingleImageDropzone } from "../@/components/ui/single-image-dropzone";
+import { useEdgeStore } from "../src/lib/edgestore";
+import { useParams } from "next/navigation";
+import { Popover,PopoverTrigger, PopoverContent  } from "../@/components/ui/popover";
+import CoverDropZoneBox from "./CoverDropZoneBox";
 
 interface ToolbarProps {
     initialData: Doc<"documents">;
@@ -21,7 +26,6 @@ export const Toolbar = ({
     const inputRef = useRef<ElementRef<"textarea">>(null);
     const [isEditing, setIsEditing] = useState(false);
     const [value, setValue] = useState(initialData.title);
-
     const update = useMutation(api.documents.update);
     const removeIcon = useMutation(api.documents.removeIcon);
 
@@ -64,7 +68,9 @@ export const Toolbar = ({
         })
     }
 
+
     const coverImage = useCoverImage()
+
 
     return (
         <div className="pl-[54px] group relative">
@@ -101,14 +107,21 @@ export const Toolbar = ({
                     </IconPicker>
                 )}
                 {!initialData.coverImage && !preview && (
-                    <Button
-                        className="text-xs hover:bg-gray-100"
-                        variant="outline"
-                        size="sm"
-                        onClick={coverImage.onOpen}>
-                        <ImageIcon className="h-4 w-4 mr-2" />
-                        Add cover
-                    </Button>
+                    <Popover>
+                        <PopoverTrigger>
+                            <Button
+                                className="text-xs hover:bg-gray-100"
+                                variant="outline"
+                                size="sm"
+                                onClick={coverImage.onOpen}>
+                                <ImageIcon className="h-4 w-4 mr-2" />
+                                Add cover
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="absolute flex justify-center items-center bg-white h-[250px] w-[350px]">
+                            <CoverDropZoneBox/>
+                        </PopoverContent>
+                    </Popover>
                 )}
             </div>
             {isEditing && !preview ? (

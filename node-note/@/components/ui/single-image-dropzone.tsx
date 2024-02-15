@@ -149,7 +149,7 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
             />
           ) : (
             // Upload Icon
-            <div className="flex flex-col items-center justify-center text-xs text-gray-400">
+            <div className="flex flex-col items-center justify-center text-lg text-gray-400">
               <UploadCloudIcon className="mb-2 h-7 w-7" />
               <div className="text-gray-400">
                 Click or drag file to this area to upload
@@ -178,7 +178,7 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {/* Error Text */}
-        <div className="mt-1 text-xs text-red-500">{errorMessage}</div>
+        <div className="mt-1 text-lg text-red-500">{errorMessage}</div>
       </div>
     );
   },
@@ -197,7 +197,7 @@ const Button = React.forwardRef<
         // color
         'border border-gray-400 text-gray-400 shadow hover:bg-gray-100 hover:text-gray-500 dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-700',
         // size
-        'h-6 rounded-md px-2 text-xs',
+        'h-6 rounded-md px-2 text-lg',
         className,
       )}
       ref={ref}
