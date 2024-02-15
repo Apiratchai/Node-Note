@@ -59,7 +59,7 @@ export const DocumentList = ({
                 paddingLeft: level ? `${(level * 12) + 25}px` : "undefine"
             }}
                 className={classNames(
-                    "hidden text-sm font-medium ",
+                    "hidden text-sm font-medium  ",
                     expanded && "last:block",
                     level === 0 && "hidden"
                 )}>
@@ -78,6 +78,7 @@ export const DocumentList = ({
                         level={level}
                         onExpand={() => onExpand(document._id)}
                         expanded={expanded[document._id]}
+
                     />
                     {expanded[document._id] && (
                         <DocumentList

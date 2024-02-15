@@ -94,13 +94,13 @@ export const Item = ({
                 paddingLeft: level ? `${(level * 12) + 12}px` : "12px"
             }}
             className={classNames(
-                "group text-sm py-1 pr-3 w-full flex items-center font-medium"
+                "group text-sm py-1 pr-3 w-full flex items-center font-medium hover:bg-transparent/5"
                 , active && ""
             )}>
             {!!id && (
                 <div
                     role="button"
-                    className="h-full rounded-small hover:bg-gray-300 mr-2"
+                    className="h-full rounded-small hover:bg-transparent/5 mr-2"
                     onClick={handleExpand}>
                     <ChevronIcon className="h-4 w-4 shrink-0" />
                 </div>

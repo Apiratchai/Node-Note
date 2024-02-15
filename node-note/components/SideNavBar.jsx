@@ -73,14 +73,14 @@ export default function MyComponent() {
       >
         <div
           role="button"
-          className="h-6 w-6 rounded-sm hover:bg-gray-300 absolute top-3 right-2 "
+          className="h-6 w-6 rounded-sm hover:bg-transparent/5 absolute top-3 right-2 "
           onClick={collapse}
         >
           <ChevronsLeft />
         </div>
-        <div className="flex font-semibold justify-center items-center border border-black w-full h-10 pr-3">
-          <Popover>
-            <PopoverTrigger className="w-full border-gray-300 ">
+        <div className="flex font-semibold justify-center items-center border border-black w-full h-10 pr-3 hover:bg-transparent/5">
+          <Popover >
+            <PopoverTrigger className="w-full">
               <div className="w-full">
                 {user.firstName + "'s Note"}
               </div>
@@ -89,15 +89,15 @@ export default function MyComponent() {
               className=" w-[200%]"
               side={"right"}
             >
-              <div className="text-sm bg-white ml-3 border border-gray-300 rounded-r-lg hover:bg-gray-300">
-                <UserSettingBox className="hover:bg-gray-300"/>
+              <div className="text-sm bg-white ml-3 border border-gray-300 rounded-r-lg hover:bg-transparent/5">
+                <UserSettingBox className="hover:bg-transparent/5"/>
               </div>
             </PopoverContent>
           </Popover>
 
         </div>
         <div>
-          <div className="hover:bg-gray-300">
+          <div className="hover:bg-transparent/5">
             <Popover>
               <PopoverTrigger className="w-full">
                 <Item label="Search" icon={Search} isSearch />
@@ -110,7 +110,7 @@ export default function MyComponent() {
               </PopoverContent>
             </Popover>
           </div>
-          <div className="hover:bg-gray-300">
+          <div className="hover:bg-transparent/5">
             <Item
               onClick={onCreate}
               label="New page"
@@ -120,7 +120,7 @@ export default function MyComponent() {
         </div>
         <div className="mt-4">
           <DocumentList />
-          <div className="hover:bg-gray-300">
+          <div className="hover:bg-transparent/5">
             <Item
               onClick={onCreate}
               icon={Plus}
@@ -128,7 +128,7 @@ export default function MyComponent() {
             />
           </div>
           <Popover>
-            <PopoverTrigger className="w-full mt-4 hover:bg-gray-300">
+            <PopoverTrigger className="w-full mt-4 hover:bg-transparent/5">
               <Item label="Trash" icon={Trash} />
             </PopoverTrigger>
             <PopoverContent
