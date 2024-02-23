@@ -77,14 +77,14 @@ export const Toolbar = ({
             {!!initialData.icon && !preview && (
                 <div className="flex items-center gap-x-2 group/icon pt-6">
                     <IconPicker onChange={onIconSelect}>
-                        <p className="text-6xl hover:opacity-75 transition">
+                        <p className="text-6xl transition">
                             {initialData.icon}
                         </p>
 
                     </IconPicker>
                     <Button
                         onClick={onRemoveIcon}
-                        className="rounded-full opacity-0 group-hover/icon:opacity-100 transition text-xs">
+                        className="rounded-full transition text-xs">
                         <X className="h-4 w-4" />
                     </Button>
                 </div>
@@ -94,7 +94,7 @@ export const Toolbar = ({
                     {initialData.icon}
                 </p>
             )}
-            <div className="opacity-0 group-hover:opacity-100 flex items-center gap-x-1 py-4">
+            <div className=" flex items-center gap-x-1 py-4">
                 {!initialData.icon && !preview && (
                     <IconPicker asChild onChange={onIconSelect}>
                         <Button
