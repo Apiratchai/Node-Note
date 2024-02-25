@@ -15,7 +15,7 @@ const DocumentIdPage = () => {
     const { documentId } = router.query; // Access route parameters from router.query
 
     const Editor = useMemo(() => dynamic(() => import("../../../../components/Editor"), { ssr: false }), []);
-
+    
     const document = useQuery(api.documents.getById, {
         documentId: documentId as Id<"documents"> // Cast documentId to the appropriate type
     });

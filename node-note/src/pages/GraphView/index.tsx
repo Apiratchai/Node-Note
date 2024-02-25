@@ -3,8 +3,17 @@ import Graph from "react-graph-vis";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import NoteTakingLayout from "../../../components/NoteTakingLayout";
+import { MenuIcon } from "lucide-react";
 
-function App() {
+interface NavbarProps {
+    isCollapsed: boolean;
+    onResetWidth: () => void;
+}
+
+const App = ({
+    isCollapsed,
+    onResetWidth
+}: NavbarProps) => {
     const [graphData, setGraphData] = useState(null);
     const documents = useQuery(api.documents.getSearch); // Fetch all documents
     const [search] = useState("");
@@ -64,7 +73,7 @@ function App() {
             navigation: true,
             hover: true, // Enable node hover effect
         },
-        height: "830px", // Increase height for better visualization
+        height: "790px", // Increase height for better visualization
         width: "1450px", // Adjust width as needed
         nodes: {
             font: {
@@ -82,7 +91,6 @@ function App() {
         },
     };
 
-
     const events = {
         select: function (event) {
             var { nodes, edges } = event;
@@ -91,8 +99,20 @@ function App() {
 
     return (
         <NoteTakingLayout>
-            <div className="">
-                <div>
+            <div className="flex justify-center items-center h-full">
+                <div className="flex flex-col items-center">
+                    <nav className="pl-5 bg-white flex items-center gap-x-4">
+                        {isCollapsed && (
+                            <MenuIcon
+                                role="button"
+                                onClick={onResetWidth}
+                                className="h-6 w-6 hover:bg-gray-100"
+                            />
+                        )}
+                        <div className="flex items-center justify-between w-full py-2">
+                            <div>This will be toggle button</div>
+                        </div>
+                    </nav>
                     {graphData && (
                         <Graph
                             graph={graphData}

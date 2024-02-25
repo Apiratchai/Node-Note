@@ -32,23 +32,7 @@ export const Navbar = ({
         </nav>
     }
     if (document === null) {
-        return (
-            <>
-                <nav className="pl-5 bg-white flex items-center gap-x-4">
-                    {isCollapsed && (
-                        <MenuIcon
-                            role="button"
-                            onClick={onResetWidth}
-                            className="h-6 w-6 hover:bg-gray-100" />
-                    )}
-                    <div className="flex items-center justify-between w-full py-2">
-                        <div>
-                            This will be toggle button
-                        </div>
-                    </div>
-                </nav>
-            </>
-        )
+        return null;
     }
     return (
         <>
