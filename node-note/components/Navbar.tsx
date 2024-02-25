@@ -50,7 +50,7 @@ export const Navbar = ({
                         This will be toggle button
                     </div>
                     <div className="flex items-center gap-x-2  ">
-                        <Publish initialData={document}/>
+                        <Publish initialData={document} />
                         <div className="hover:bg-gray-100">
                             <Menu documentId={document._id} />
                         </div>

@@ -1,5 +1,5 @@
 import { Plus, ChevronsLeft, MenuIcon, Search, PlusCircle, Trash } from "lucide-react"
-import { useRef, useState } from "react"
+import { ElementRef, useRef, useState } from "react"
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useUser, UserButton } from "@clerk/nextjs";
@@ -8,64 +8,108 @@ import { toast } from "sonner";
 import { DocumentList } from "./DocumentList";
 import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover";
 import { TrashBox } from "./TrashBox";
-import { useParams } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { Navbar } from "./Navbar";
 import classNames from "classnames";
 import { SearchBox } from "./SearchBox"
 import { UserSettingBox } from "./UserSettingBox"
+import { useSearch } from "../hooks/useSearch";
+import { useSettings } from "../hooks/useSettings";
 
 export default function MyComponent() {
-  const sideBarRef = useRef(null);
-  const navbarRef = useRef(null);
+  const isResizingRef = useRef(false);
+  const sidebarRef = useRef<ElementRef<"aside">>(null);
+  const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const { user } = useUser();
 
+  const router = useRouter();
+  const settings = useSettings();
+  const search = useSearch();
   const params = useParams();
+  const pathname = usePathname();
+  const create = useMutation(api.documents.create);
 
-  const collapse = () => {
-    if (sideBarRef.current) {
-      setIsCollapsed(true);
-      setIsResetting(true);
-      sideBarRef.current.style.width = "0";
-      navbarRef.current.style.setProperty("width", "100%");
-      navbarRef.current.style.setProperty("left", "0");
-      setTimeout(() => {
-        setIsResetting(false);
-      }, 300);
+  const handleMouseDown = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    isResizingRef.current = true;
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
+
+  const handleMouseMove = (event: MouseEvent) => {
+    if (!isResizingRef.current) return;
+    let newWidth = event.clientX;
+
+    if (newWidth < 240) newWidth = 240;
+    if (newWidth > 480) newWidth = 480;
+
+    if (sidebarRef.current && navbarRef.current) {
+      sidebarRef.current.style.width = `${newWidth}px`;
+      navbarRef.current.style.setProperty("left", `${newWidth}px`);
+      navbarRef.current.style.setProperty("width", `calc(100% - ${newWidth}px)`);
     }
   };
+
+  const handleMouseUp = () => {
+    isResizingRef.current = false;
+    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("mouseup", handleMouseUp);
+  };
+
   const resetWidth = () => {
-    if (sideBarRef.current) {
+    if (sidebarRef.current && navbarRef.current) {
       setIsCollapsed(false);
       setIsResetting(true);
-      sideBarRef.current.style.width = "240px";
-      navbarRef.current.style.setProperty(
-        "width", "calc(100% - 240px)")
-      navbarRef.current.style.setProperty(
-        "left", "240px")
 
+      sidebarRef.current.style.width = "240px";
+      navbarRef.current.style.setProperty(
+        "width",
+        "calc(100% - 240px)"
+      );
+      navbarRef.current.style.setProperty(
+        "left",
+        "240px"
+      );
+      setTimeout(() => setIsResetting(false), 300);
+    }
+  };
+
+  const collapse = () => {
+    if (sidebarRef.current && navbarRef.current) {
+      setIsCollapsed(true);
+      setIsResetting(true);
+
+      sidebarRef.current.style.width = "0";
+      navbarRef.current.style.setProperty("width", "100%");
+      navbarRef.current.style.setProperty("left", "0");
       setTimeout(() => setIsResetting(false), 300);
     }
   }
 
-  const create = useMutation(api.documents.create);
 
-  const onCreate = () => {
+  const handleCreate = () => {
     const promise = create({ title: "Untitled" })
+      .then((documentId) => router.push(`/documents/${documentId}`))
+
     toast.promise(promise, {
       loading: "Creating a new note...",
-      success: "New note created",
-      error: "Failed to create a note",
-    })
-  }
+      success: "New note created!",
+      error: "Failed to create a new note."
+    });
+  };
 
   return (
     <>
       {/* group classname is to wrap actions for group components */}
       <aside
-        ref={sideBarRef}
+        ref={sidebarRef}
         className={
           "group/sidebar h-full bg-gray-200 overflow-y-auto relative flex flex-col w-60 z-[999999] " +
           (isResetting ? "group transition-all ease-in-out duration-300" : "")
@@ -90,7 +134,7 @@ export default function MyComponent() {
               side={"right"}
             >
               <div className="text-sm bg-white ml-3 border border-gray-300 rounded-r-lg hover:bg-transparent/5">
-                <UserSettingBox className="hover:bg-transparent/5"/>
+                <UserSettingBox/>
               </div>
             </PopoverContent>
           </Popover>
@@ -112,7 +156,7 @@ export default function MyComponent() {
           </div>
           <div className="hover:bg-transparent/5">
             <Item
-              onClick={onCreate}
+              onClick={handleCreate}
               label="New page"
               icon={PlusCircle}
             />
@@ -120,13 +164,6 @@ export default function MyComponent() {
         </div>
         <div className="mt-4">
           <DocumentList />
-          <div className="hover:bg-transparent/5">
-            <Item
-              onClick={onCreate}
-              icon={Plus}
-              label="Add a page"
-            />
-          </div>
           <Popover>
             <PopoverTrigger className="w-full mt-4 hover:bg-transparent/5">
               <Item label="Trash" icon={Trash} />

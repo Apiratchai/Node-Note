@@ -13,7 +13,7 @@ interface ItemProps {
     id?: Id<"documents">;
     documentIcon?: string;
     active?: boolean;
-    expanded?: boolean
+    expanded?: boolean;
     isSearch?: boolean;
     level?: number;
     onExpand?: () => void; //optional
@@ -32,7 +32,7 @@ export const Item = ({
     isSearch,
     level = 0,
     onExpand,
-    expanded,
+    expanded ,
 }: ItemProps) => {
     let ChevronIcon;
     if (expanded) {
@@ -76,7 +76,7 @@ export const Item = ({
                 if (!expanded) {
                     onExpand?.();
                 }
-                // router.push(`/documents/${documentId}`)
+                router.push(`/documents/${documentId}`)
             })
         toast.promise(promise, {
             loading: "Creating a new note...",

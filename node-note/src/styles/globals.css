@@ -31,3 +31,6 @@
   border-radius: 50%;
 }
 
+div.vis-network {
+  border: solid black thin;
+}
