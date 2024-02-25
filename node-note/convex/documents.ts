@@ -1,5 +1,4 @@
 import { v } from "convex/values";
-
 import { mutation, query } from "./_generated/server";
 import { Doc, Id } from "./_generated/dataModel";
 
@@ -218,28 +217,6 @@ export const remove = mutation({
   }
 });
 
-export const getSearch = query({
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-
-    if (!identity) {
-      throw new Error("Not authenticated");
-    }
-
-    const userId = identity.subject;
-
-    const documents = await ctx.db
-      .query("documents")
-      .withIndex("by_user", (q) => q.eq("userId", userId))
-      .filter((q) =>
-        q.eq(q.field("isArchived"), false),
-      )
-      .order("desc")
-      .collect()
-
-    return documents;
-  }
-});
 
 export const getById = query({
   args: { documentId: v.id("documents") },
@@ -363,5 +340,49 @@ export const removeCoverImage = mutation({
     });
 
     return document;
+  }
+});
+
+
+export const getAllDocuments = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    const documents = await ctx.db
+      .query("documents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .filter((q) =>
+        q.eq(q.field("isArchived"), false)) // don't show archived
+      .collect()
+    return documents;
+  }
+});
+
+export const getSearch = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    const documents = await ctx.db
+      .query("documents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .filter((q) =>
+        q.eq(q.field("isArchived"), false),
+      )
+      .order("desc")
+      .collect()
+
+    return documents;
   }
 });
