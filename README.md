@@ -37,15 +37,15 @@ public/  (is for storing files that'll be used throughout the project, ex. banne
 - [x] Sign in with google account
 - Note taking space
    - [ ] supports links and tags
-   - [ ] supports pictures
+   - [x] supports pictures
 - Catagorizing and visualization
-   - [ ] Force directed graph view (node-like structure)
+   - [x] Force directed graph view (node-like structure)
    - [ ] foldering
 
 
 ---Optional---
 - Sharing
-   - [ ] readonly format
+   - [x] readonly format
    - [ ] Edit access
 - Exporting
   -  [ ] export as PDF
