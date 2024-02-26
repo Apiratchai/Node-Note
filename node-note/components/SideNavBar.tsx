@@ -176,7 +176,8 @@ export default function MyComponent() {
             </PopoverContent>
           </Popover>
         </div>
-        <div className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-gray-400 right-0 top-0">
+        <div className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-gray-400 right-0 top-0"
+        onMouseDown={handleMouseDown}>
           {/* this only indicate that user can resize the sidebar */}
         </div>
       </aside >
