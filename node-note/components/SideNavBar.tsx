@@ -47,13 +47,23 @@ export default function MyComponent() {
     if (!isResizingRef.current) return;
     let newWidth = event.clientX;
 
-    if (newWidth < 240) newWidth = 240;
+    if (newWidth < 180 && newWidth > 150) newWidth = 180;
+    if (newWidth < 260 && newWidth > 220) newWidth = 240;
     if (newWidth > 480) newWidth = 480;
+    if (newWidth < 20) {
+      setIsCollapsed(true);
+      newWidth = 0;
+    }
+    // Update collapse state based on width
+    if (newWidth > 10) setIsCollapsed(false);
 
     if (sidebarRef.current && navbarRef.current) {
       sidebarRef.current.style.width = `${newWidth}px`;
       navbarRef.current.style.setProperty("left", `${newWidth}px`);
-      navbarRef.current.style.setProperty("width", `calc(100% - ${newWidth}px)`);
+      navbarRef.current.style.setProperty(
+        "width",
+        `calc(100% - ${newWidth}px)`
+      );
     }
   };
 
@@ -134,7 +144,7 @@ export default function MyComponent() {
               side={"right"}
             >
               <div className="text-sm bg-white ml-3 border border-gray-300 rounded-r-lg hover:bg-transparent/5">
-                <UserSettingBox/>
+                <UserSettingBox />
               </div>
             </PopoverContent>
           </Popover>
@@ -177,7 +187,7 @@ export default function MyComponent() {
           </Popover>
         </div>
         <div className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-gray-400 right-0 top-0"
-        onMouseDown={handleMouseDown}>
+          onMouseDown={handleMouseDown}>
           {/* this only indicate that user can resize the sidebar */}
         </div>
       </aside >
