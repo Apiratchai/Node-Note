@@ -7,8 +7,8 @@ import { api } from "../convex/_generated/api";
 import { Id } from "../convex/_generated/dataModel";
 import { Banner } from "./Banner";
 import { Menu } from "./Menu";
-import { Title } from "./Title";
 import { Publish } from "./Publish";
+import { Title } from "./Title";
 
 interface NavbarProps {
     isCollapsed: boolean;

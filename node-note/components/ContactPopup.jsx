@@ -15,9 +15,9 @@ const ContactPopup = ({ open, onClose }) => {
           <div className="flex flex-col space-y-2">
             <h1 className="text-3xl mb-8 text-black text-center"> Contact Us </h1>
             {[
-              { name: "Apiratchai Lakkum", role: "Full stack", facebook: "https://web.facebook.com/profile.php?id=100088070056042", email: "" },
-              { name: "Kunasin Salabsri", role: "UI designer", facebook: "https://web.facebook.com/kunasin.salabsri.7", email: "" },
-              { name: "Achitapan Sutthiwanna", role: "Front end", facebook: "https://web.facebook.com/A.Sutthivanna", email: "" }
+              { name: "Apiratchai Lakkum", role: "Full stack", facebook: "https://web.facebook.com/profile.php?id=100088070056042", email: "apiratchai.l@kkumail.com" },
+              { name: "Kunasin Salabsri", role: "UI designer", facebook: "https://web.facebook.com/kunasin.salabsri.7", email: "kunasin.s@kkumail.com" },
+              { name: "Achitapan Sutthiwanna", role: "Front end", facebook: "https://web.facebook.com/A.Sutthivanna", email: "achitapan.s@kkumail.com" }
             ].map((member, index) => (
               <div key={index} className="flex flex-row justify-between items-center">
                 <div className="text-sm md:text-xl text-black">{member.name}</div>
