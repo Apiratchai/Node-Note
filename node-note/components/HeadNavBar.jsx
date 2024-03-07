@@ -1,7 +1,6 @@
-import { UserButton } from "@clerk/nextjs";
-import { useUser } from "@clerk/nextjs";
-import { useConvexAuth } from "convex/react";
+import { UserButton, useUser } from "@clerk/nextjs";
 import classNames from "classnames";
+import { useConvexAuth } from "convex/react";
 import { useState } from "react";
 
 export default function HeadNavBar() {

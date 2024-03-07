@@ -14,7 +14,7 @@ export default function App({
         baseTheme: dark
       }}>
       <EdgeStoreProvider>
-      <Toaster position="bottom-center" />
+      <Toaster position="bottom-center"/>
       {/* above is popup notification from sonner */}
         <Component {...pageProps} />
       </EdgeStoreProvider>
