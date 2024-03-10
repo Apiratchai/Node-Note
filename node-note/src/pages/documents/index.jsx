@@ -17,7 +17,8 @@ export default function Component() {
   }
   return (
     <NoteTakingLayout>
-      <div className="flex flex-col h-screen">
+      <div className="h-full flex flex-col items-center justify-center space-y-4"
+             style={{ backgroundImage: `url('https://img.freepik.com/free-vector/flat-creativity-concept-illustration_52683-64279.jpg')`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }}>
         <div className="h-full flex flex-col items-center justify-center space-y-4">
           <div className="text-center animate-bounce duration-0"> {/* Added text-center class */}
             Nice to meet you here {user.firstName}
