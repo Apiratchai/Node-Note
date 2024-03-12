@@ -6,17 +6,9 @@ import {
   PopoverTrigger,
 } from "@radix-ui/react-popover";
 import classNames from "classnames";
-import { CircleDotDashed, ChevronsLeft, MenuIcon, Search, PlusCircle, Trash, Dot } from "lucide-react"
+import { ArrowLeft, CircleDotDashed, ChevronsLeft, MenuIcon, Search, PlusCircle, Trash, Dot, Home } from "lucide-react"
 import { ElementRef, useRef, useState } from "react"
 import { useMutation } from "convex/react";
-import {
-  ArrowLeft,
-  ChevronsLeft,
-  MenuIcon,
-  PlusCircle,
-  Search,
-  Trash,
-} from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { api } from "../convex/_generated/api";
@@ -123,52 +115,47 @@ export default function MyComponent() {
     });
   };
 
-  function goToLandingPage(): void {
-    router.push("../")
-  }
-
   return (
     <>
       {/* group classname is to wrap actions for group components */}
       <aside
         ref={sidebarRef}
         className={
-          "group/sidebar h-full bg-gradient-to-t from-sky-100 via-white via-40% overflow-y-auto relative flex flex-col w-60 z-[999999] " +
+          "group/sidebar h-full bg-gradient-to-t from-sky-100 via-white via-40% overflow-y-auto relative flex flex-col w-60 z-[999999] border-r border-solid border-black " +
           (isResetting ? "group transition-all ease-in-out duration-300" : "")
         }
       >
         <div
           role="button"
-          className="h-8 w-8 rounded-sm hover:bg-transparent/5 absolute top-3 right-2 "
+          className="h-8 w-8 rounded-sm hover:bg-transparent/5 absolute top-2 right-0 "
           onClick={collapse}
         >
           <ChevronsLeft />
         </div>
-        <div className="flex font-semibold justify-center items-center border border-black w-full h-10 pr-3 hover:bg-transparent/5">
+        <div className="flex font-semibold justify-center items-center border-b border-black w-full h-10 pr-3">
+          <Link href={"/"}><Home className="pl-2 hover:bg-transparent/5 w-10"/></Link>
+          
           <Popover>
             <PopoverTrigger className="w-full">
-              <div className="w-full">{user.firstName + "'s Note"}</div>
+              <div className="w-full  hover:bg-transparent/5 ">{user.firstName + "'s Note"}</div>
             </PopoverTrigger>
             <PopoverContent className=" w-[200%]" side={"right"}>
-              <div className="text-sm bg-white ml-3 border border-gray-300 rounded-r-lg hover:bg-transparent/5">
+              <div className="text-sm bg-white border border-gray-300 rounded-r-lg ">
                 <UserSettingBox />
               </div>
             </PopoverContent>
           </Popover>
         </div>
         <div>
-          <Link href={"/GraphView"} className="hover:bg-transparent/5 mt-4 py-1 pl-3 flex flex-row   justify-between">
+          <Link href={"/documents"} className="hover:bg-transparent/5 mt-4 py-1 pl-3 flex flex-row   justify-between">
             <div className="flex">
               <CircleDotDashed className="h-[22px] w-[22px] shrink-0" />
               <span className="ml-2 font-medium text-[14px] truncate">Graph View</span>
             </div>
-            {pathname === "/GraphView" && (
+            {pathname === "/documents" && (
               <Dot className="text-emerald-500 h-[60px] w-[60px] absolute right-0 top-9 mt-1 motion-reduce:animate-pulse" />
             )}
           </Link>
-          <div className="hover:bg-transparent/5">
-            <Item onClick={goToLandingPage} label="Back to Home" icon={ArrowLeft} />
-          </div>
           <div className="hover:bg-transparent/5">
             <Popover>
               <PopoverTrigger className="w-full">
