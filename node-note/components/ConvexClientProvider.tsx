@@ -14,7 +14,7 @@ export const ConvexClientProvider = ({
   children: ReactNode;
 }) => {
   return (
-    <ClerkProvider afterSignInUrl="/Notetaking" afterSignUpUrl="/Notetaking"
+    <ClerkProvider afterSignInUrl="/documents" afterSignUpUrl="/documents"
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}
     >
       <ConvexProviderWithClerk

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Graph from "react-graph-vis";
-import { useMutation, useQuery } from "convex/react";
+import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import NoteTakingLayout from "../../../components/NoteTakingLayout";
 import { MenuIcon } from "lucide-react";
-import { toast } from "sonner";
 
 interface NavbarProps {
     isCollapsed: boolean;
@@ -74,8 +73,8 @@ const App = ({
             navigation: true,
             hover: true, // Enable node hover effect
         },
-        height: "790px", // Increase height for better visualization
-        width: "1450px", // Adjust width as needed
+        height: "772px", // Increase height for better visualization
+        width: "1440px", // Adjust width as needed
         nodes: {
             font: {
                 size: 30,
@@ -98,16 +97,6 @@ const App = ({
         }
     };
 
-    const create = useMutation(api.documents.create); //create api  
-    const onCreate = () => {
-        const promise = create({ title: "Untitled" })
-        toast.promise(promise, {
-            loading: "Creating a new note...",
-            success: "New note created",
-            error: "Failed to create a note",
-        })
-    }
-
     return (
         <NoteTakingLayout>
             <div className="flex justify-center items-center h-full">
@@ -120,6 +109,9 @@ const App = ({
                                 className="h-6 w-6 hover:bg-gray-100"
                             />
                         )}
+                        <div className="flex items-center justify-between w-full py-2">
+                            <div className="font-semibold text-3xl">GraphView</div>
+                        </div>
                     </nav>
                     {graphData && (
                         <Graph

@@ -37,7 +37,7 @@ export default function Home() {
           )}
           {!isAuthenticated && !isLoading && (
             <SignInButton mode="modal">
-              <div className="hover:cursor-pointer hover:-translate-y-1 bg-transparent hover:bg-white hover:text-black text-white font-semibold py-2 px-10 mt-10 rounded-full border border-white-500 transition duration-500">
+              <div className="hover:cursor-pointer hover:-translate-y-1 bg-transparent hover:bg-white hover:text-black text-white font-semibold py-2 px-10 mt-10 text-3xl rounded-full border border-white-500 transition duration-500">
                 Sign in
               </div>
             </SignInButton>
