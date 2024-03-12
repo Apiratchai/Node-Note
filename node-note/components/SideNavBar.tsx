@@ -1,4 +1,4 @@
-import { Plus, ChevronsLeft, MenuIcon, Search, PlusCircle, Trash } from "lucide-react"
+import { CircleDotDashed, ChevronsLeft, MenuIcon, Search, PlusCircle, Trash, Dot } from "lucide-react"
 import { ElementRef, useRef, useState } from "react"
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
@@ -15,6 +15,7 @@ import { SearchBox } from "./SearchBox"
 import { UserSettingBox } from "./UserSettingBox"
 import { useSearch } from "../hooks/useSearch";
 import { useSettings } from "../hooks/useSettings";
+import Link from "next/link";
 
 export default function MyComponent() {
   const isResizingRef = useRef(false);
@@ -47,7 +48,7 @@ export default function MyComponent() {
     if (!isResizingRef.current) return;
     let newWidth = event.clientX;
 
-    if (newWidth < 180 && newWidth > 150) newWidth = 180;
+    if (newWidth < 180 && newWidth > 150) newWidth = 190;
     if (newWidth < 260 && newWidth > 220) newWidth = 240;
     if (newWidth > 480) newWidth = 480;
     if (newWidth < 20) {
@@ -127,7 +128,7 @@ export default function MyComponent() {
       >
         <div
           role="button"
-          className="h-6 w-6 rounded-sm hover:bg-transparent/5 absolute top-3 right-2 "
+          className="h-8 w-8 rounded-sm hover:bg-transparent/5 absolute top-3 right-2 "
           onClick={collapse}
         >
           <ChevronsLeft />
@@ -151,6 +152,15 @@ export default function MyComponent() {
 
         </div>
         <div>
+          <Link href={"/GraphView"} className="hover:bg-transparent/5 mt-4 py-1 pl-3 flex flex-row   justify-between">
+            <div className="flex">
+              <CircleDotDashed className="h-[22px] w-[22px] shrink-0" />
+              <span className="ml-2 font-medium text-[14px] truncate">Graph View</span>
+            </div>
+            {pathname === "/GraphView" && (
+              <Dot className="text-emerald-500 h-[60px] w-[60px] absolute right-0 top-9 mt-1 motion-reduce:animate-pulse" />
+            )}
+          </Link>
           <div className="hover:bg-transparent/5">
             <Popover>
               <PopoverTrigger className="w-full">

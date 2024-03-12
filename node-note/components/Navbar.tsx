@@ -46,9 +46,7 @@ export const Navbar = ({
                 <div className="flex items-center justify-between w-full py-2">
                     {/* above mt-20 is tricky */}
                     <Title initialData={document} />
-                    <div>
-                        This will be toggle button
-                    </div>
+                    {/*  */}
                     <div className="flex items-center gap-x-2  ">
                         <Publish initialData={document} />
                         <div className="hover:bg-gray-100">
