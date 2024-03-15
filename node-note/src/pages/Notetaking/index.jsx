@@ -18,11 +18,12 @@ export default function Component() {
   }
   return (
     <NoteTakingLayout>
+      <browserIcon />
       <div className="flex flex-col h-screen">
         {/* <HeadNavBar /> */}
         <div className="h-full flex flex-col items-center justify-center space-y-4">
           <div className="text-center animate-bounce duration-0"> {/* Added text-center class */}
-            Hi Hello {user.firstName}
+            Welcome to Nodenote! {user.firstName}
           </div>
           <div className="flex text-2xl text-blue-600 font-semibold justify-center items-center border border-black rounded-full w-60 h-14 hover:bg-gray-200 hover:-translate-y-1 transition ease-in-out duration-300"
             role="button"
