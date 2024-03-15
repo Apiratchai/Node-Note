@@ -73,8 +73,8 @@ const App = ({
             navigation: true,
             hover: true, // Enable node hover effect
         },
-        height: "772px", // Increase height for better visualization
-        width: "1440px", // Adjust width as needed
+        height: "790px", // Increase height for better visualization
+        width: "1450px", // Adjust width as needed
         nodes: {
             font: {
                 size: 30,
@@ -110,7 +110,7 @@ const App = ({
                             />
                         )}
                         <div className="flex items-center justify-between w-full py-2">
-                            <div className="font-semibold text-3xl">GraphView</div>
+                            <div>This will be toggle button</div>
                         </div>
                     </nav>
                     {graphData && (
