@@ -1,10 +1,9 @@
-import { useConvexAuth, useMutation } from "convex/react";
-import Footer from "../../components/Footer";
-import TypewriterTitle from "../../components/TypewritereTitle";
-import Layout from "../../components/Layout";
-import { SignInButton } from "@clerk/nextjs";
+import { SignInButton, UserButton } from "@clerk/nextjs";
+import { useConvexAuth } from "convex/react";
 import { useRouter } from "next/router";
-import { UserButton } from "@clerk/nextjs";
+import Layout from "../../components/Layout";
+import TypewriterTitle from "../../components/TypewritereTitle";
+import Footer from "../../components/Footer";
 
 export default function Home() {
   const { isAuthenticated, isLoading } = useConvexAuth();

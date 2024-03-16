@@ -7,7 +7,7 @@ export default function Document() {
         <title>Node-Note</title>
         <meta name="keyword" content="node,notetaking,noteapp,forcedirected,force-directed,node-note,nodenote"></meta>
         <meta name="description" content='A note taking web app that able to do node visuzlization'></meta>
-        {/* <link rel="icon" href="D:\AdComProject_Sunny\node-note\public\vercel.svg" /> */}
+        <link rel="icon" href="../public/nodenoteicon.ico" type="image/x-icon"/>
         <body>
           <Main />
           <NextScript />
