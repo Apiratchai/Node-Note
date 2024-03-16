@@ -133,10 +133,8 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
             zoomView: true,
         },
         navigationButtons: true,
-        height: "500", // Increase height for better visualization
-        width: "500", // Adjust width as needed
-        // height: "772px", // Increase height for better visualization
-        // width: "1440px", // Adjust width as needed
+        height: "772px", // Increase height for better visualization
+        width: "1440px", // Adjust width as needed
         physics: {
             enabled: true,
             hierarchicalRepulsion: {
