@@ -6,7 +6,7 @@ import {
   PopoverTrigger,
 } from "@radix-ui/react-popover";
 import classNames from "classnames";
-import { ArrowLeft, CircleDotDashed, ChevronsLeft, MenuIcon, Search, PlusCircle, Trash, Dot, Home } from "lucide-react"
+import { ArrowLeft, CircleDotDashed, ChevronsLeft, MenuIcon, Search, PlusCircle, Trash, Dot, Home, CircleDashed } from "lucide-react"
 import { ElementRef, useRef, useState } from "react"
 import { useMutation } from "convex/react";
 import { useParams, usePathname, useRouter } from "next/navigation";
@@ -133,8 +133,8 @@ export default function MyComponent() {
           <ChevronsLeft />
         </div>
         <div className="flex font-semibold justify-center items-center border-b border-black w-full h-10 pr-3">
-          <Link href={"/"}><Home className="pl-2 hover:bg-transparent/5 w-10"/></Link>
-          
+          <Link href={"/"}><Home className="pl-2 hover:bg-transparent/5 w-10" /></Link>
+
           <Popover>
             <PopoverTrigger className="w-full">
               <div className="w-full  hover:bg-transparent/5 ">{user.firstName + "'s Note"}</div>
@@ -149,7 +149,11 @@ export default function MyComponent() {
         <div>
           <Link href={"/documents"} className="hover:bg-transparent/5 mt-4 py-1 pl-3 flex flex-row   justify-between">
             <div className="flex">
-              <CircleDotDashed className="h-[22px] w-[22px] shrink-0" />
+              {pathname === "/documents" ? (
+                <CircleDotDashed className="h-[22px] w-[22px] shrink-0" />
+              ) : (
+                <CircleDashed className="h-[22px] w-[22px] shrink-0" />
+              )}
               <span className="ml-2 font-medium text-[14px] truncate">Graph View</span>
             </div>
             {pathname === "/documents" && (

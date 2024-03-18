@@ -3,8 +3,9 @@ import Graph from "react-graph-vis";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import NoteTakingLayout from "../../../components/NoteTakingLayout";
-import { MenuIcon } from "lucide-react";
+import { MenuIcon, LocateFixedIcon } from "lucide-react";
 import { Button } from "../../../@/components/ui/button";
+import { useRouter } from "next/router";
 
 interface NavbarProps {
     isCollapsed: boolean;
@@ -13,28 +14,29 @@ interface NavbarProps {
 
 const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
     const [graphData, setGraphData] = useState(null);
-    const documents = useQuery(api.documents.getSearch); // Fetch all documents
-    const [search] = useState("");
-
-    // Filter documents based on your criteria
-    const filteredDocuments = documents?.filter((document) => {
-        return document.title.toLowerCase().includes(search.toLowerCase());
-    });
-
-    const graphRef = useRef(null);// for recentering
+    const [redrawGraph, setRedrawGraph] = useState(false); // State variable to trigger graph redraw
+    const documents = useQuery(api.documents.getSearch);
+    const router = useRouter();
+    const graphRef = useRef(null);
 
     useEffect(() => {
-        // Construct graph data using all documents or filtered documents, as needed
         if (documents) {
             const nodes = [];
             const edges = [];
-            const groupColors = {}; // Object to store colors for each group
+            const groupColors = {};
+            const predefinedColors = [
+                '#FF5733', '#33FF57', '#5733FF', '#FF33C3', '#33C3FF', '#C3FF33',
+                '#FF3333', '#33FF33', '#3333FF', '#FF3366', '#FF9933', '#33FF99',
+                '#333333', '#CCCCCC', '#FF66FF', '#66FFFF', '#6666FF', '#FF0066',
+                '#0066FF', '#66FF00'
+            ];
+            let colorIndex = 0;
 
             documents.forEach((document) => {
                 nodes.push({
                     id: document._id,
                     label: document.title,
-                    parent: document.parentDocument // Store parent information in each node
+                    parent: document.parentDocument
                 });
 
                 if (document.parentDocument) {
@@ -44,14 +46,13 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
                     });
                 }
 
-                // Assign group colors based on parentDocument
                 const group = document.parentDocument ? document.parentDocument.toString() : document._id.toString();
                 if (!groupColors[group]) {
-                    groupColors[group] = getRandomColor(); // Generate a random color for each group
+                    groupColors[group] = predefinedColors[colorIndex];
+                    colorIndex = (colorIndex + 1) % predefinedColors.length; // Move to the next color
                 }
             });
 
-            // Propagate color from great-grandparents to their descendants
             nodes.forEach((node) => {
                 if (!node.parent) {
                     const color = groupColors[node.id.toString()];
@@ -65,7 +66,7 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
             };
             setGraphData(graphData);
         }
-    }, [documents]);
+    }, [documents, redrawGraph]); // Include redrawGraph in dependencies to trigger graph redraw
 
     function propagateColor(node, color, allNodes, groupColors) {
         node.color = color;
@@ -76,44 +77,22 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
         });
     }
 
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        let lastColorValue = -1; // Initialize with a value outside the color range
-
-        // Generate light shades for each color component
-        for (let i = 0; i < 3; i++) {
-            let randomValue;
-            do {
-                randomValue = Math.floor(Math.random() * 128) + 128; // Limit to range 128-255 for lighter shades
-            } while (Math.abs(randomValue - lastColorValue) < 32); // Ensure a minimum difference of 32 between color components
-
-            color += letters[randomValue >> 4]; // Get hexadecimal digit for the first component
-            color += letters[randomValue & 0x0F]; // Get hexadecimal digit for the second component
-
-            lastColorValue = randomValue;
-        }
-        return color;
-    }
-
-
     const options = {
         layout: {
             hierarchical: {
                 enabled: true,
-                direction: 'DU', // You can also use 'RL' for Right to Left radial layout
+                direction: 'DU',
                 sortMethod: 'directed',
-                levelSeparation: 200, // Adjust the distance between levels
-                treeSpacing: 10, // Adjust the spacing between trees (groups)
+                levelSeparation: 300, // Decrease this value for closer trees
+                treeSpacing: 50, // Decrease this value for closer trees
                 blockShifting: true,
                 edgeMinimization: true,
                 parentCentralization: true,
             },
         },
-        autoResize: true,
         nodes: {
             font: {
-                size: 30,
+                size: 40,
             },
             shape: 'dot',
             borderWidth: 2,
@@ -127,64 +106,69 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
             color: '#888',
             width: 2,
         },
-        interaction: {
-            multiselect: true,
-            hover: true,
-            zoomView: true,
-        },
-        navigationButtons: true,
-        height: "772px", // Increase height for better visualization
-        width: "1440px", // Adjust width as needed
+        height: "772px",
+        width: "1440px",
         physics: {
             enabled: true,
             hierarchicalRepulsion: {
-                centralGravity: 0, // Set centralGravity to 0 for center-to-outer layout
-                springLength: 100, // Adjust springLength for node spacing
-                springConstant: 0.05, // Adjust springConstant for layout tension
-                nodeDistance: 300, // Adjust nodeDistance for radial distance
+                centralGravity: 0,
+                springLength: 100,
+                springConstant: 0.05,
+                nodeDistance: 150,
             },
         },
     };
 
     const events = {
-        select: function (event) {
-            var { nodes, edges } = event;
+        selectNode: function (event) {
+            const { nodes } = event;
+            if (nodes.length > 0) {
+                const nodeId = nodes[0]; // Assuming only one node is selected
+                const documentUrl = `/documents/${nodeId}`; // Construct the document URL
+                router.push(documentUrl); // Navigate to the document URL
+            }
         },
     };
 
-    const handleRecenter = () => {
-        console.log('Recentering...');
-        console.log('Graph ref:', graphRef.current); // Check if graphRef is valid
-        console.log('Graph network:', graphRef.current?.network); // Check if network is valid
-        if (graphRef.current && graphRef.current.network) {
-            graphRef.current.network.fit(); // Fit the graph to re-center it
-        }
+    const handleRedrawGraph = () => {
+        setRedrawGraph((prevState) => !prevState); // Toggle redrawGraph state to force graph redraw
     };
-
 
     return (
         <NoteTakingLayout>
             <div className="flex justify-center items-center h-full">
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center relative">
                     <nav className="pl-5 bg-white flex items-center gap-x-4">
                         {isCollapsed && (
                             <MenuIcon
                                 role="button"
                                 onClick={onResetWidth}
-                                className="h-6 w-6 hover:bg-gray-100"
+                                className="h-6 w-6 hover:bg-gray-100 cursor-pointer"
                             />
                         )}
                         <div className="flex items-center justify-between w-full py-2">
                             <div className="font-semibold text-3xl">GraphView</div>
                         </div>
                     </nav>
-                    <nav className="absolute flex justify-center top-[85%] right-[10%] z-[9999999]">
-                        <div>
-                            <Button onClick={handleRecenter}>Recenter</Button>
-                        </div>
-                    </nav>
+                    <div className="absolute top-[80%] right-[3%] mt-4 mr-4 z-[999999999999]">
+                        <Button onClick={handleRedrawGraph} className="cursor-pointer">
+                            <LocateFixedIcon className="h-[60px] w-[60px] text-blue-500" />
+                            <div className="pt-1 text-blue-600">RESET</div>
+                        </Button>
+                    </div>
+                    <div className="absolute top-[60%] right-[5%] text-gray-500 flex flex-col">
+                        <p className="font-semibold mb-2">How to Use This Graph View:</p>
+                        <ul className="list-disc pl-5">
+                            <li>Click nodes to open documents.</li>
+                            <li>Drag nodes to move them.</li>
+                            <li>Click "Reset" to reset the graph.</li>
+                            <li>Scroll to zoom in/out.</li>
+                            <li>Drag on whitespace to pan.</li>
+                        </ul>
+                    </div>
+
                     {graphData && (
-                        <Graph graph={graphData} options={options} events={events} ref={graphRef} />
+                        <Graph key={redrawGraph} graph={graphData} options={options} events={events} ref={graphRef} />
                     )}
                 </div>
             </div>
