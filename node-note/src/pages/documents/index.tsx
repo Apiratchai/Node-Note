@@ -83,8 +83,8 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
                 enabled: true,
                 direction: 'DU',
                 sortMethod: 'directed',
-                levelSeparation: 300, // Decrease this value for closer trees
-                treeSpacing: 200, // Decrease this value for closer trees
+                levelSeparation: 250, // Decrease this value for closer trees
+                treeSpacing: 150, // Decrease this value for closer trees
                 blockShifting: true,
                 edgeMinimization: true,
                 parentCentralization: true,
@@ -92,7 +92,7 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
         },
         nodes: {
             font: {
-                size: 40,
+                size: 20,
             },
             shape: 'dot',
             size: 20,
