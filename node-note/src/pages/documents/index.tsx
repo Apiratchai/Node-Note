@@ -92,7 +92,7 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
         },
         nodes: {
             font: {
-                size: 40,
+                size: 20,
             },
             shape: 'dot',
             borderWidth: 2,
