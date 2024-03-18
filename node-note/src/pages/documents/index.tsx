@@ -66,16 +66,16 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
             };
             setGraphData(graphData);
         }
+        function propagateColor(node, color, allNodes, groupColors) {
+            node.color = color;
+            allNodes.forEach((n) => {
+                if (n.parent === node.id) {
+                    propagateColor(n, color, allNodes, groupColors);
+                }
+            });
+        }
     }, [documents, redrawGraph]); // Include redrawGraph in dependencies to trigger graph redraw
 
-    function propagateColor(node, color, allNodes, groupColors) {
-        node.color = color;
-        allNodes.forEach((n) => {
-            if (n.parent === node.id) {
-                propagateColor(n, color, allNodes, groupColors);
-            }
-        });
-    }
 
     const options = {
         layout: {
@@ -157,7 +157,7 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
                         </Button>
                     </div>
                     <div className="absolute top-[60%] right-[5%] text-gray-500 flex flex-col">
-                        <p className="font-semibold mb-2">How to Use This Graph View:</p>
+                        <p className="font-semibold mb-2">&quot;How to Use This Graph View:&quot;</p>
                         <ul className="list-disc pl-5">
                             <li>Click nodes to open documents.</li>
                             <li>Drag nodes to move them.</li>
