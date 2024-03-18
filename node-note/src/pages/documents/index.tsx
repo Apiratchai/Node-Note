@@ -161,7 +161,7 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
                         <ul className="list-disc pl-5">
                             <li>Click nodes to open documents.</li>
                             <li>Drag nodes to move them.</li>
-                            <li>Click "Reset" to reset the graph.</li>
+                            <li>Click &quot;Reset&quot; to reset the graph.</li>
                             <li>Scroll to zoom in/out.</li>
                             <li>Drag on whitespace to pan.</li>
                         </ul>
