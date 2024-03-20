@@ -18,6 +18,8 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
     const documents = useQuery(api.documents.getSearch);
     const router = useRouter();
     const graphRef = useRef(null);
+    const [nodePositions, setNodePositions] = useState({});
+
 
     useEffect(() => {
         if (documents) {
@@ -102,6 +104,7 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
                     values.borderWidth = selected || hovering ? 4 : 2;
                 },
             },
+            dragging: true, // Enable node dragging
         },
         edges: {
             color: '#888',
@@ -111,14 +114,12 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
         width: "1440px",
         physics: {
             enabled: true,
-            hierarchicalRepulsion: {
-                centralGravity: 0,
-                springLength: 100,
-                springConstant: 0.05,
-                nodeDistance: 150,
-            },
+        },
+        stabilization: {
+            enabled: true,
         },
     };
+
 
     const events = {
         selectNode: function (event) {
@@ -137,7 +138,7 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
 
     return (
         <NoteTakingLayout>
-            <div className="flex justify-center items-center h-full">
+            <div className="flex justify-center items-center h-full w-full graphbg">
                 <div className="flex flex-col items-center relative">
                     <nav className="pl-5 bg-white flex items-center gap-x-4">
                         {isCollapsed && (
@@ -148,7 +149,7 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
                             />
                         )}
                         <div className="flex items-center justify-between w-full py-2">
-                            <div className="font-semibold text-3xl">GraphView</div>
+                            <div className="font-semibold text-3xl pl-0 pr-4">GraphView</div>
                         </div>
                     </nav>
                     <div className="absolute top-[80%] right-[3%] mt-4 mr-4 z-[999999999999]">

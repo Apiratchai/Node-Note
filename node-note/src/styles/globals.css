@@ -34,3 +34,10 @@
 div.vis-network {
   border: solid black thin;
 }
+
+canvas {
+  background-color: white;
+}
+
+.graphbg {
+  background: linear-gradient(90deg, rgb(134, 154, 183), rgb(87, 87, 229));}
