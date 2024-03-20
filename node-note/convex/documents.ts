@@ -96,17 +96,22 @@ export const create = mutation({
 
     const userId = identity.subject;
 
-    const document = await ctx.db.insert("documents", {
+    // Include an empty tag array in the document data
+    const documentData = {
       title: args.title,
       parentDocument: args.parentDocument,
       userId,
       isArchived: false,
       isPublished: false,
-    });
+      tag: [] // Include an empty tag array
+    };
+
+    const document = await ctx.db.insert("documents", documentData);
 
     return document;
   }
 });
+
 
 export const getTrash = query({
   handler: async (ctx) => {
@@ -254,7 +259,8 @@ export const update = mutation({
     content: v.optional(v.string()),
     coverImage: v.optional(v.string()),
     icon: v.optional(v.string()),
-    isPublished: v.optional(v.boolean())
+    isPublished: v.optional(v.boolean()),
+    tag: v.optional(v.array(v.string())),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();

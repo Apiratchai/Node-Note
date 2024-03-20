@@ -158,7 +158,7 @@ const App = ({ isCollapsed, onResetWidth }: NavbarProps) => {
                             <div className="pt-1 text-blue-600">RESET</div>
                         </Button>
                     </div>
-                    <div className="absolute top-[60%] right-[5%] text-gray-500 flex flex-col">
+                    <div className="absolute top-[60%] right-[5%] text-gray-500 flex flex-col z-[99999999]">
                         <p className="font-semibold mb-2">How to Use This Graph View</p>
                         <ul className="list-disc pl-5">
                             <li>Click nodes to open documents.</li>

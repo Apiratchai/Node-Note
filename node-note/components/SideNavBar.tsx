@@ -185,6 +185,15 @@ export default function MyComponent() {
             </PopoverContent>
           </Popover>
         </div>
+        <div className="text-gray-500 font-semibold pt-40 pl-[10%]">
+          <p>
+            How to use Node-Note
+          </p>
+          <ul className="list-disc font-normal pt-3">
+            <li>Click + sign on the right side of each document to create its child document</li>
+            <li></li>
+          </ul>
+        </div>
         <div
           className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-gray-400 right-0 top-0"
           onMouseDown={handleMouseDown}
