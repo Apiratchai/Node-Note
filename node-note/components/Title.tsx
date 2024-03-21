@@ -103,7 +103,7 @@ export const Title = ({ initialData }: TitleProps) => {
                     </div>
                 )}
                 {tag.length > 0 && (
-                    <div className="flex flex-row relative top-12">
+                    <div className="flex flex-row relative top-12 bg-white-700">
                         {tag.map((t, index) => (
                             <div key={index} className="border border-solid h-8 mx-1 rounded-md">
                                 <span className="">#{t}</span>
@@ -111,7 +111,7 @@ export const Title = ({ initialData }: TitleProps) => {
                                     onClick={() => removeTag(t)}
                                     variant="ghost"
                                     size="sm"
-                                    className="text-red-500 w-6 h-6"
+                                    className="text-red-500 w-6 h-6 bg-white-700"
                                 >
                                     x
                                 </Button>
