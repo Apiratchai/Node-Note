@@ -51,7 +51,7 @@ public/  (is for storing files that'll be used throughout the project, ex. banne
 
 
 ---
-## **What we learned & What **
+## What we learned & What are planning to do next
 - our work in heavily relied on Generative AIs (ChatGPT, Bard(Gemini), Github Copilot, etc).
 Anyway, we got a grasp of how the website is made from scratch to production.
 - The work relied a lot on Youtube tutorial videos too, the database part is the most difficult for us. Sometimes we just copy the code, ask AI, and get it works but didn't understand much.
