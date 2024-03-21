@@ -14,16 +14,12 @@ interface TitleProps {
 
 export const Title = ({ initialData }: TitleProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const tagRef = useRef<HTMLInputElement>(null);
     const update = useMutation(api.documents.update);
     const [title, setTitle] = useState(initialData.title || "Untitled");
-    const [tag, setTag] = useState(initialData.tag || []);
-    const [tagInput, setTagInput] = useState("");
     const [isEditing, setIsEditing] = useState(false);
 
     const enableInput = () => {
         setTitle(initialData.title);
-        setTag(initialData.tag || []);
         setIsEditing(true);
         setTimeout(() => {
             inputRef.current?.focus();
@@ -43,36 +39,10 @@ export const Title = ({ initialData }: TitleProps) => {
         });
     };
 
-    const onTagChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTagInput(event.target.value);
-    };
-
-    const addTag = () => {
-        if (tagInput.trim()) {
-            const updatedTags = [...tag, tagInput.trim()];
-            setTag(updatedTags);
-            update({
-                id: initialData._id,
-                tag: updatedTags
-            });
-            setTagInput(""); // Clear the tag input field after adding the tag
-            disableInput();
-        }
-    };
-
-    const removeTag = (tagToRemove: string) => {
-        const updatedTags = tag.filter(t => t !== tagToRemove);
-        setTag(updatedTags);
-        update({
-            id: initialData._id,
-            tag: updatedTags
-        });
-    };
-
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.preventDefault(); // Prevent default behavior of the Enter key
-            addTag(); // Call addTag function to add the tag
+            setIsEditing(false);
         }
     };
 
@@ -88,6 +58,7 @@ export const Title = ({ initialData }: TitleProps) => {
                         onChange={onChange}
                         value={title}
                         spellCheck={false}
+                        onKeyDown={handleKeyDown}
                         className="px-2 focus:ring-transparent text-xl"
                     />
                 ) : (
@@ -100,36 +71,6 @@ export const Title = ({ initialData }: TitleProps) => {
                         >
                             <span className="truncate">{initialData?.title}</span>
                         </Button>
-                    </div>
-                )}
-                {tag.length > 0 && (
-                    <div className="flex flex-row relative top-12">
-                        {tag.map((t, index) => (
-                            <div key={index} className="border border-solid h-8 mx-1 rounded-md bg-white">
-                                <span className="">#{t}</span>
-                                <Button
-                                    onClick={() => removeTag(t)}
-                                    variant="ghost"
-                                    size="sm"
-                                    className="text-red-500 text-lg bg-white-700 hover:bg-transparent/5"
-                                >
-                                    x
-                                </Button>
-                            </div>
-                        ))}
-                    </div>
-                )}
-                {(
-                    <div className="flex flex-col absolute top-24">
-                        <Input
-                            ref={tagRef}
-                            onChange={onTagChange}
-                            value={tagInput}
-                            placeholder="Add tag"
-                            spellCheck={false}
-                            className="px-2 focus:ring-transparent text-xl"
-                            onKeyDown={handleKeyDown}
-                        />
                     </div>
                 )}
             </div>
