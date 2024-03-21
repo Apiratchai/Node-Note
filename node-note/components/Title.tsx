@@ -103,15 +103,15 @@ export const Title = ({ initialData }: TitleProps) => {
                     </div>
                 )}
                 {tag.length > 0 && (
-                    <div className="flex flex-row relative top-12 bg-white-700">
+                    <div className="flex flex-row relative top-12">
                         {tag.map((t, index) => (
-                            <div key={index} className="border border-solid h-8 mx-1 rounded-md">
+                            <div key={index} className="border border-solid h-8 mx-1 rounded-md bg-white">
                                 <span className="">#{t}</span>
                                 <Button
                                     onClick={() => removeTag(t)}
                                     variant="ghost"
                                     size="sm"
-                                    className="text-red-500 w-6 h-6 bg-white-700"
+                                    className="text-red-500 text-lg bg-white-700 hover:bg-transparent/5"
                                 >
                                     x
                                 </Button>
