@@ -17,6 +17,7 @@ import CoverDropZoneBox from "./CoverDropZoneBox";
 import { useRef, useState } from "react";
 import { Doc } from "../convex/_generated/dataModel";
 import { Input } from "../@/components/ui/input";
+import { useUser } from "@clerk/nextjs";
 
 interface CoverImageProps {
   url?: string;
@@ -34,6 +35,7 @@ export const Cover = ({
   const params = useParams();
   const coverImage = useCoverImage();
   const removeCoverImage = useMutation(api.documents.removeCoverImage);
+  const { user } = useUser();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const tagRef = useRef<HTMLInputElement>(null);
@@ -115,6 +117,16 @@ export const Cover = ({
       {!!url && (
         <div>
           <div className="relative text-black z-[999] left-16 top-16 flex flex-col">
+            {url && preview && (
+              <div>
+                <div className="text-black bg-white font-semibold border border-white rounded-md px-10 py-2 w-80">
+                  Permission: view only
+                  <div>
+                    Author: {user.fullName}
+                  </div>
+                </div>
+              </div>
+            )}
             {tag.length > 0 && !preview && (
               <div>
                 <div className="flex flex-row relative right-10">
