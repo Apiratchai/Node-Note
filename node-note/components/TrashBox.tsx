@@ -107,7 +107,7 @@ export const TrashBox = () => {
                                 role="button"
                                 className="rounded-sm p-2 hover:bg-neutral-100"
                             >
-                                <Trash className="h-4 w-4 text-muted-foreground" />
+                                <Trash className="h-4 w-4 text-muted-foreground text-red-500" />
                             </div>
                         </div>
                     </div>

@@ -127,11 +127,11 @@ export const Item = ({
                     >
                         <div role="button"
                             onClick={onArchive}>
-                            <Trash className="h-4 w-4" />
+                            <Trash className="h-4 w-4 text-red-500" />
                         </div>
                     </div>
                     <div className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 ">
-                        <Plus className="h-4 w-4" />
+                        <Plus className="h-4 w-4 text-green-600" />
                     </div>
 
 

@@ -31,13 +31,13 @@ export const SearchBox = () => {
     }
 
     return (
-        <div className="text-sm bg-white border border-gray-300 rounded-r-lg mt-16 pt-2">
-            <div className="flex items-center gap-x-1 p-2">
-                <Search className="h-4 w-4 mr-2" />
+        <div className="text-sm bg-white border border-gray-300 rounded-r-lg mt-16 pt-2 text-black">
+            <div className="flex items-center gap-x-1 p-2 text-blue-500">
+                <Search className="h-4 w-4 mr-2 " />
                 <Input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="h-7 px-2 focus-visible:ring-transparent bg-white"
+                    className="h-7 px-2 focus-visible:ring-transparent bg-white text-blue-500"
                     placeholder="Filter by page title..."
                 />
             </div>
