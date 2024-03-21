@@ -115,38 +115,37 @@ export const Cover = ({
       {!!url && (
         <div>
           <div className="relative text-black z-[999] left-16 top-16 flex flex-col">
-            {tag.length > 0 && (
-              <div className="flex flex-row relative right-10">
-                {tag.map((t, index) => (
-                  <div key={index} className="border border-solid h-8 mx-1 rounded-md bg-white font-semibold text-blue-500">
-                    <span className="font-bold ml-1"># </span>
-                    <span>{t}</span>
-                    <Button
-                      onClick={() => removeTag(t)}
-                      variant="ghost"
-                      size="sm"
-                      className="text-red-500 text-lg bg-white-700 hover:bg-transparent/5"
-                    >
-                      x
-                    </Button>
-                  </div>
-                ))}
+            {tag.length > 0 && !preview && (
+              <div>
+                <div className="flex flex-row relative right-10">
+                  {tag.map((t, index) => (
+                    <div key={index} className="border border-solid h-8 mx-1 rounded-md bg-white font-semibold text-blue-500">
+                      <span className="font-bold ml-1"># </span>
+                      <span>{t}</span>
+                      <Button
+                        onClick={() => removeTag(t)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-red-500 text-lg bg-white-700 hover:bg-transparent/5"
+                      >
+                        x
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+                <div className="w-40 relative right-9 top-7 flex text-blue-500">
+                  <span className="px-2 py-1 bg-gray-100 font-bold flex items-center rounded-l-lg">#</span>
+                  <Input
+                    ref={tagRef}
+                    onChange={onTagChange}
+                    value={tagInput}
+                    placeholder="tag name"
+                    spellCheck={false}
+                    className="px-2 py-1 focus:ring-transparent text-xl flex-grow rounded-l-none rounded-r-lg"
+                    onKeyDown={handleKeyDown}
+                  />
+                </div>
               </div>
-            )}
-            {(
-              <div className="w-40 relative right-9 top-7 flex text-blue-500">
-                <span className="px-2 py-1 bg-gray-100 font-bold flex items-center rounded-l-lg">#</span>
-                <Input
-                  ref={tagRef}
-                  onChange={onTagChange}
-                  value={tagInput}
-                  placeholder="tag name"
-                  spellCheck={false}
-                  className="px-2 py-1 focus:ring-transparent text-xl flex-grow rounded-l-none rounded-r-lg"
-                  onKeyDown={handleKeyDown}
-                />
-              </div>
-
             )}
           </div>
           <Image
