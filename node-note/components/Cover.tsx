@@ -121,9 +121,10 @@ export const Cover = ({
               <div>
                 <div className="text-black bg-white font-semibold border border-white rounded-md px-10 py-2 w-80">
                   Permission: view only
-                  <div>
+                  {/* <div>
                     Author: {user.fullName}
-                  </div>
+                  </div> */}
+                  {/* This is await fix, this div should log the author and show his name, not current user name */}
                 </div>
               </div>
             )}
