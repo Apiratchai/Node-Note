@@ -33,3 +33,9 @@ Anyway, we got a grasp of how the website is made from scratch to production.
 
 - Apiratchai will be working on an astrology (No, not astronomy) website this semester break, with a real developer (She is unemployed rich programmer with many free time to waste with me, thanks god she exists). Apiratchia may get better after that.
 In brief, the astronomy web will ask user for their birth information and match the info with celestial events (require some work with astronomy at this point) and use generative that is trained with our collected data to give the prediction.
+ - update (14/10/2024) The senior developer abandoned that project at its very early stage. Apiratchai has shifted his interest toward cybersecurity and networking.
+- Kunasin-6444 has not yet found what he is going to be in the future; however, he is doing well in every core subject.
+- Achitapan is currently interested in both web development and game design.
+
+---
+May the good be with us.
